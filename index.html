@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل الدخول · كشافة كنائس زايد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Reem+Kufi:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+  /* Login-specific extras */
+  .auth-wave {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    z-index: 0;
+    overflow: hidden;
+    line-height: 0;
+  }
+  .auth-wave svg {
+    width: 100%; height: 100%;
+    transform: scaleY(-1);
+  }
+  .demo-creds {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, rgba(45, 138, 150, 0.06), rgba(255, 107, 91, 0.04));
+    border-radius: 12px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-align: right;
+    border-right: 3px solid var(--teal);
+  }
+  .demo-creds strong { color: var(--teal-deep); font-weight: 700; }
+  .demo-creds code {
+    font-family: var(--font-modern);
+    background: #fff;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    direction: ltr;
+    display: inline-block;
+    color: var(--indigo);
+  }
+</style>
+</head>
+<body>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+
+    <div class="auth-brand">
+      <div class="hero-logos hero-logos--sm">
+        <div class="hero-logo">
+          <img src="assets/logos/logo_anba_samuel.webp" alt="كنيسة العذراء والأنبا صموئيل">
+          <div class="name">كنيسـة العذراء<br>والأنبا صموئيـل</div>
+        </div>
+        <div class="hero-logo hero-logo--gold">
+          <img src="assets/logos/logo_scout.webp" alt="كشافة كنائس زايد">
+          <!-- اللوجو الأصفر في النص بدون اسم تحته -->
+        </div>
+        <div class="hero-logo">
+          <img src="assets/logos/logo_pope_kyrillos.webp" alt="كنيسة العذراء والبابا كيرلس السادس">
+          <div class="name">كنيسـة العذراء<br>والبابا كيرلـس السـادس</div>
+        </div>
+      </div>
+      <h1>كشافة كنائس زايد</h1>
+      <p>ZAYED SCOUT GROUPS · SEASON 2026</p>
+    </div>
+
+    <div class="form-error" id="err"></div>
+
+    <form id="login-form" autocomplete="off">
+      <div class="form-group">
+        <label class="form-label" for="email">البريد الإلكتروني</label>
+        <input
+          type="email"
+          id="email"
+          class="form-input"
+          placeholder="example@zayedscout.org"
+          required
+          autocomplete="email"
+          dir="ltr"
+          style="text-align: left;"
+        >
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">كلمة المرور</label>
+        <input
+          type="password"
+          id="password"
+          class="form-input"
+          placeholder="••••••••"
+          required
+          autocomplete="current-password"
+          dir="ltr"
+          style="text-align: left;"
+        >
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
+        تسجيل الدخول
+      </button>
+    </form>
+
+    <div class="demo-creds">
+      <strong>للتجربة:</strong><br>
+      • قائد عام: <code>admin@zayedscout.org</code> / <code>admin2026</code><br>
+      • قائد قطاع: <code>advanced@zayedscout.org</code> / <code>scout2026</code>
+    </div>
+
+    <div class="auth-foot">
+      «لاَ يَغْلِبَنَّكَ الشَّرُّ، بَلِ اغْلِبِ الشَّرَّ بِالْخَيْرِ»
+    </div>
+
+  </div>
+</div>
+
+<script src="assets/zs.js"></script>
+<script>
+  // If already logged in, redirect to dashboard
+  if (ZS.currentUser()) {
+    window.location.href = 'dashboard.html';
+  }
+
+  const form = document.getElementById('login-form');
+  const errBox = document.getElementById('err');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errBox.classList.remove('show');
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const result = ZS.login(email, password);
+    if (result.ok) {
+      window.location.href = 'dashboard.html';
+    } else {
+      errBox.textContent = result.error;
+      errBox.classList.add('show');
+    }
+  });
+</script>
+
+</body>
+</html>
