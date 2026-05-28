@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الهوية والمهمة · كشافة كنائس زايد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Reem+Kufi:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  .pillar {
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px 28px;
+    border: 1px solid rgba(45, 138, 150, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .pillar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px var(--shadow-md);
+  }
+  .pillar-num {
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    font-family: var(--font-latin);
+    font-style: italic;
+    font-size: 64px;
+    color: rgba(45, 138, 150, 0.1);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .pillar-icon {
+    font-size: 38px;
+    margin-bottom: 14px;
+    line-height: 1;
+  }
+  .pillar h3 {
+    font-family: var(--font-accent);
+    font-size: 20px;
+    color: var(--indigo);
+    margin-bottom: 10px;
+  }
+  .pillar p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+
+  .mv-block {
+    background: linear-gradient(135deg, #fff 0%, var(--teal-fade) 100%);
+    border-radius: 24px;
+    padding: 40px 36px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(45, 138, 150, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .mv-block::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(255, 107, 91, 0.08), transparent 70%);
+    border-radius: 50%;
+  }
+  .mv-eyebrow {
+    font-family: var(--font-modern);
+    font-size: 11px;
+    letter-spacing: 3.5px;
+    color: var(--coral-deep);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .mv-block h2 {
+    font-family: var(--font-display);
+    font-size: 30px;
+    color: var(--indigo);
+    margin-bottom: 16px;
+    line-height: 1.4;
+    position: relative;
+  }
+  .mv-block p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.9;
+    position: relative;
+  }
+
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .stat-strip-item {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 18px;
+    text-align: center;
+    border: 1px solid rgba(45, 138, 150, 0.1);
+  }
+  .stat-strip-num {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--coral-deep);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-strip-label {
+    font-family: var(--font-modern);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--teal-deep);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .timeline {
+    position: relative;
+    padding: 30px 0;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    right: 24px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--teal) 0%, var(--coral) 100%);
+  }
+  .timeline-item {
+    position: relative;
+    padding-right: 60px;
+    margin-bottom: 28px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    right: 18px;
+    top: 8px;
+    width: 14px; height: 14px;
+    background: #fff;
+    border: 3px solid var(--teal);
+    border-radius: 50%;
+  }
+  .timeline-year {
+    font-family: var(--font-modern);
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: var(--coral-deep);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .timeline-title {
+    font-family: var(--font-accent);
+    font-size: 18px;
+    color: var(--indigo);
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .timeline-text {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  .verse-banner {
+    background: linear-gradient(135deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+    color: #fff;
+    padding: 50px 36px;
+    border-radius: 24px;
+    text-align: center;
+    margin: 48px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .verse-banner::before, .verse-banner::after {
+    content: '"';
+    font-family: var(--font-display);
+    font-size: 120px;
+    color: rgba(255, 107, 91, 0.18);
+    position: absolute;
+    line-height: 0.8;
+  }
+  .verse-banner::before { top: 24px; right: 36px; }
+  .verse-banner::after { bottom: 60px; left: 36px; transform: rotate(180deg); }
+  .verse-banner-text {
+    font-family: var(--font-display);
+    font-size: 26px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .verse-banner-ref {
+    font-family: var(--font-modern);
+    font-size: 12px;
+    letter-spacing: 3.5px;
+    color: var(--coral-light);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav-mount"></div>
+
+<div class="page-wrap">
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">IDENTITY · من نحن</div>
+    <h1>كشافة كنائس زايد</h1>
+    <p>مجموعة كشفية بحرية، خرجت من رحم كنائس مدينة الشيخ زايد قبل خمس سنوات، لتُكوِّن شبابًا نقيًا روحيًا، نقيًا أخلاقيًا، نقيًا فكريًا — يخدم كنيسته ووطنه.</p>
+    <div class="verse">⛵ كشافة بحرية فقط · لا جوية ولا برية</div>
+  </div>
+
+  <!-- Mission, Vision -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">MISSION & VISION</div>
+      <h2 class="section-title">رسالتنا ورؤيتنا</h2>
+    </div>
+
+    <div class="mv-block">
+      <div class="mv-eyebrow">OUR MISSION · رسالتنا</div>
+      <h2>أن نُساعد البنين والبنات ليصبحوا قادة لتطوير أنفسهم — أشخاصًا ملتزمين، مسؤولين، معتمدين على ذواتهم، داعمين لغيرهم.</h2>
+      <p>على مثال المسيح الذي «كان يصنع ويعلّم» (أعمال ١ : ١)، نُدرِّب شبابنا على القدوة قبل الكلام، وعلى المسؤولية قبل المُطالبة بالحقوق.</p>
+    </div>
+
+    <div class="mv-block" style="background: linear-gradient(135deg, #fff 0%, rgba(255, 107, 91, 0.06) 100%);">
+      <div class="mv-eyebrow">OUR VISION · رؤيتنا</div>
+      <h2>جيلٌ بحريٌّ، يقرأ بوصلة الإيمان قبل بوصلة الاتجاه — لا تُربكه الأمواج لأن مرساته في الصخرة.</h2>
+      <p>نسعى لبناء قطاعات كشفية تُكمِّل دور الكنيسة في تربية النفس، تربية العقل، تربية الجسد، تربية الروح — فلا يتربى الواحد منا في زاوية، بل في كل الزوايا.</p>
+    </div>
+  </section>
+
+  <!-- 6 Pillars (the curriculum axes) -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">SIX PILLARS · المحاور الستة</div>
+      <h2 class="section-title">المحاور التربوية الست</h2>
+      <p class="section-sub">كل قطاع، في كل سنة، يبني المخدوم على هذه المحاور الستة معًا — لا يطغى محور على آخر.</p>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-icon">⚓</div>
+        <h3>كشفي</h3>
+        <p>القانون والوعد، التمام والصفا، العقد والشفرات، الإسعافات الأولية، تخطيط المعسكرات — كل ما يبني الكشفي ككشفي.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-icon">⛵</div>
+        <h3>إبحار</h3>
+        <p>أنواع المراكب، الإبحار الشراعي، قراءة الخرائط الملاحية، قياس الأعماق، الموانئ، الغطس — هويتنا البحرية.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-icon">🤝</div>
+        <h3>اجتماعي</h3>
+        <p>روح الفريق، فن القيادة، ثقافة الاختلاف، التعامل مع الجنس الآخر، الثقافة الجنسية، الزواج المسيحي، الخدمة العامة.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <div class="pillar-icon">💪</div>
+        <h3>بدني</h3>
+        <p>اللياقة، السباحة وأنواعها، الإنقاذ، التزحلق على الماء، رحلات المشي الطويلة، كرة الماء، الغطس.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-num">05</div>
+        <div class="pillar-icon">🎨</div>
+        <h3>ثقافي</h3>
+        <p>التصوير، الموسيقى الكلاسيكية، التاريخ القبطي، السياسة المحلية والعالمية، الفن، إعادة التدوير، البيئة البحرية.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-num">06</div>
+        <div class="pillar-icon">✝</div>
+        <h3>روحي</h3>
+        <p>سيرة قديس السنة، الصلاة بالأجبية، قراءة الكتاب المقدس، حياة التوبة، العلاقة الشخصية مع الله، التأمل الأسبوعي.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Verse banner -->
+  <div class="verse-banner">
+    <div class="verse-banner-text">
+      الكشّاف يخدم الله ووطنه،<br>
+      يساعد الآخرين في كل وقت،<br>
+      ويُطيع قانون الكشاف.
+    </div>
+    <div class="verse-banner-ref">SCOUT PROMISE · الوعد الكشفي</div>
+  </div>
+
+  <!-- Numbers / Stats -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">BY THE NUMBERS · بالأرقام</div>
+      <h2 class="section-title">رحلة خمس سنوات</h2>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-strip-item">
+        <div class="stat-strip-num">5</div>
+        <div class="stat-strip-label">سنوات خدمة</div>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-num">3</div>
+        <div class="stat-strip-label">قطاعات كشفية</div>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-num">6</div>
+        <div class="stat-strip-label">محاور تربوية</div>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-num">∞</div>
+        <div class="stat-strip-label">رؤية للمستقبل</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline (placeholder for user to fill in real milestones) -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">OUR JOURNEY · رحلتنا</div>
+      <h2 class="section-title">كيف بدأنا</h2>
+      <p class="section-sub">المحطات الكبرى في رحلة المجموعة الكشفية لكنائس زايد. (هذا الجدول يحتاج لتدقيق تواريخه)</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">العام الأول</div>
+        <div class="timeline-title">البدايات</div>
+        <div class="timeline-text">انطلاق المجموعة الكشفية لكنائس زايد بنواة صغيرة من القادة، مستلهمين من كشافة مارمرقس بشبرا.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">العام الثاني · الثالث</div>
+        <div class="timeline-title">بناء القطاعات</div>
+        <div class="timeline-text">تأسيس قطاعات أشبال ومبتدئ، وبناء أول طلائع منتظمة في الاجتماعات والمعسكرات.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">العام الرابع</div>
+        <div class="timeline-title">قطاع المتقدم</div>
+        <div class="timeline-text">انطلاق قطاع المتقدم/المتقدمات وأول المعسكرات الكشفية الكاملة.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">العام الخامس · 2026</div>
+        <div class="timeline-title">نظامنا الخاص</div>
+        <div class="timeline-text">إطلاق هذه المنصة الداخلية لتوحيد السيستم، التوثيق، التخطيط — والمحافظة على التراث الكشفي المُكتسب.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div id="footer-mount"></div>
+
+<script src="assets/zs.js"></script>
+<script>
+  ZS.requireAuth();
+  ZS.mountChrome('identity');
+</script>
+
+</body>
+</html>

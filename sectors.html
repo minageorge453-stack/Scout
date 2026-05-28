@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>القطاعات الثلاث · كشافة كنائس زايد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Reem+Kufi:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+  /* Sector main card */
+  .sector-card {
+    background: #fff;
+    border-radius: 28px;
+    padding: 0;
+    margin-bottom: 36px;
+    border: 1px solid rgba(45, 138, 150, 0.1);
+    overflow: hidden;
+    box-shadow: 0 8px 28px var(--shadow);
+    scroll-margin-top: 100px;
+  }
+  .sector-head {
+    padding: 36px 36px 28px;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+  }
+  .sec-advanced .sector-head {
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
+  }
+  .sec-beginner .sector-head {
+    background: linear-gradient(135deg, var(--coral) 0%, var(--coral-deep) 100%);
+  }
+  .sec-cubs .sector-head {
+    background: linear-gradient(135deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+  }
+  .sector-head::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -50px;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .sec-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .sec-pill {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: 18px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: var(--font-modern);
+    letter-spacing: 1.5px;
+    backdrop-filter: blur(8px);
+  }
+  .sec-pill-status {
+    background: var(--coral);
+    border-color: var(--coral);
+  }
+  .sec-pill-draft {
+    background: var(--gold-deep);
+    border-color: var(--gold-deep);
+  }
+  .sector-head h2 {
+    font-family: var(--font-display);
+    font-size: 42px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .sector-head .saint-line {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-style: italic;
+    opacity: 0.92;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .sector-head .scope-line {
+    font-family: var(--font-modern);
+    font-size: 12px;
+    letter-spacing: 3px;
+    opacity: 0.85;
+    text-transform: uppercase;
+    font-weight: 600;
+    position: relative;
+  }
+
+  .sector-body {
+    padding: 32px 36px 36px;
+  }
+
+  /* Theme block */
+  .theme-block {
+    background: var(--paper-warm);
+    border-radius: 18px;
+    padding: 24px 26px;
+    margin-bottom: 28px;
+    border-right: 4px solid var(--coral);
+  }
+  .theme-eyebrow {
+    font-family: var(--font-modern);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--coral-deep);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .theme-block h4 {
+    font-family: var(--font-accent);
+    font-size: 20px;
+    color: var(--indigo);
+    margin-bottom: 8px;
+  }
+  .theme-block p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+
+  /* Year tabs */
+  .years-wrap {
+    margin-top: 28px;
+  }
+  .years-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(45, 138, 150, 0.1);
+  }
+  .year-tab {
+    background: none;
+    border: none;
+    padding: 12px 24px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+  }
+  .year-tab:hover { color: var(--teal-deep); }
+  .year-tab.active {
+    color: var(--teal-deep);
+    border-bottom-color: var(--teal);
+  }
+  .year-panel { display: none; }
+  .year-panel.active {
+    display: block;
+    animation: fade-in 0.4s ease;
+  }
+
+  /* Axes grid */
+  .axes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .axis {
+    background: var(--paper);
+    border-radius: 14px;
+    padding: 18px;
+    border: 1px solid rgba(45, 138, 150, 0.1);
+  }
+  .axis-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(45, 138, 150, 0.15);
+  }
+  .axis-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--teal-fade);
+    color: var(--teal-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .axis-title {
+    font-family: var(--font-accent);
+    font-weight: 700;
+    color: var(--indigo);
+    font-size: 15px;
+  }
+  .axis ul {
+    list-style: none;
+    padding: 0;
+  }
+  .axis li {
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 5px 0;
+    padding-right: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .axis li::before {
+    content: '◆';
+    position: absolute;
+    right: 0;
+    top: 7px;
+    font-size: 8px;
+    color: var(--coral);
+  }
+
+  /* Note for empty/draft */
+  .draft-note {
+    background: linear-gradient(135deg, rgba(212, 167, 58, 0.12), rgba(212, 167, 58, 0.05));
+    border: 1px dashed var(--gold-deep);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-top: 16px;
+    color: var(--gold-deep);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .draft-note strong { color: var(--rust); }
+
+  .cta-row {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav-mount"></div>
+
+<div class="page-wrap">
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">SECTORS · القطاعات الثلاث</div>
+    <h1>ثلاث قطاعات · رحلة واحدة</h1>
+    <p>كل قطاع يأخذ العنوان الموحد للسيزون ويُطبّقه بطريقة تناسب مرحلته العمرية والروحية — لكن الكل يسير نحو هدف واحد: غلبة الشر بالخير.</p>
+  </div>
+
+  <!-- ========== ADVANCED SECTOR ========== -->
+  <article id="advanced" class="sector-card sec-advanced">
+    <div class="sector-head">
+      <div class="sec-meta-row">
+        <span class="sec-pill">ADVANCED · متقدم</span>
+        <span class="sec-pill">GRADE P3 — S2</span>
+        <span class="sec-pill">٣ سنوات</span>
+        <span class="sec-pill sec-pill-status">جاهز · 2026</span>
+      </div>
+      <h2>متقدم / متقدمات</h2>
+      <div class="saint-line">شفيع القطاع: داود النبي — الراعي الذي صار ملكًا</div>
+      <div class="scope-line">⛵ بحري · ١٠٠ مخدوم · ١٢ طليعة</div>
+    </div>
+
+    <div class="sector-body">
+      <div class="theme-block">
+        <div class="theme-eyebrow">تطبيق العنوان · داود وغلبة الشر بالخير</div>
+        <h4>نفهم → نقوى → نواجه → نقود</h4>
+        <p>داود لم يغلب جليات بالسيف، بل بالإيمان. لم يغلب شاول بالانتقام، بل بالاحترام والتسامح. لم يغلب أبشالوم بالحقد، بل بدمعة الأب. كل مرحلة في رحلته تعلمنا: <em>الشر يُغلب بالخير، وليس بشر أكبر منه.</em></p>
+      </div>
+
+      <div class="years-wrap">
+        <div class="years-tabs" data-sector="advanced">
+          <button class="year-tab active" data-year="1">العام الأول</button>
+          <button class="year-tab" data-year="2">العام الثاني</button>
+          <button class="year-tab" data-year="3">العام الثالث</button>
+        </div>
+
+        <!-- Year 1 -->
+        <div class="year-panel active" data-year="1">
+          <div class="axes-grid">
+            <div class="axis"><div class="axis-head"><div class="axis-icon">⚓</div><div class="axis-title">كشفي</div></div><ul>
+              <li>القدرة على الطهي الخلوي</li>
+              <li>تخطيط وقيادة معسكر</li>
+              <li>تحديد الاتجاهات · ملاحة · قياس أبعاد</li>
+              <li>تعلم ٤ عقد ودورات متقدمة</li>
+              <li>حفظ لغة الراديو · التصرف في المواقف الحرجة</li>
+              <li>النيران</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">⛵</div><div class="axis-title">إبحار</div></div><ul>
+              <li>التعرف على المراكب وأجزائها</li>
+              <li>الإبحار الشراعي المتقدم</li>
+              <li>قراءة الخرائط الملاحية وقياس الأعماق</li>
+              <li>التعرف على الموانئ وأهمها</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">🤝</div><div class="axis-title">اجتماعي</div></div><ul>
+              <li>ممارسة وتعلم فن القيادة</li>
+              <li>تنمية الوعي وتكوين الرأي</li>
+              <li>التعامل مع الجنس الآخر</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">💪</div><div class="axis-title">بدني</div></div><ul>
+              <li>رفع اللياقة البدنية (مشروعات تحديات)</li>
+              <li>ممارسة لعبة جديدة</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">🎨</div><div class="axis-title">ثقافي</div></div><ul>
+              <li>تعلم الجرافيكس والمونتاج</li>
+              <li>الإلمام بالكوارث الطبيعية وجهود الإغاثة</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">✝</div><div class="axis-title">روحي</div></div><ul>
+              <li>سيرة داود النبي (شفيع السيزون)</li>
+              <li>تأمل ومتابعة روحية أون لاين</li>
+              <li>العلاقة الشخصية مع الله</li>
+              <li>هدف روحي شخصي (بمعرفة قادة العام)</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <!-- Year 2 -->
+        <div class="year-panel" data-year="2">
+          <div class="axes-grid">
+            <div class="axis"><div class="axis-head"><div class="axis-icon">⚓</div><div class="axis-title">كشفي</div></div><ul>
+              <li>القدرة على الإسعافات الأولية</li>
+              <li>البقاء في الخلاء (Survival)</li>
+              <li>رسم الخرائط</li>
+              <li>نماذج ريادة</li>
+              <li>مراجعة سيمافور · موريس</li>
+              <li>تصميم خيمة صغيرة</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">⛵</div><div class="axis-title">إبحار</div></div><ul>
+              <li>أنواع المياه والبحار</li>
+              <li>التعرف على الموانئ المتقدمة</li>
+              <li>كيفية الرسو</li>
+              <li>أنظمة الإبحار الحديثة</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">🤝</div><div class="axis-title">اجتماعي</div></div><ul>
+              <li>الاختيار (كيف تختار طريقك)</li>
+              <li>التأقلم والتغيير</li>
+              <li>ثقافة جنسية</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">💪</div><div class="axis-title">بدني</div></div><ul>
+              <li>رفع اللياقة (مشروعات تحديات)</li>
+              <li>رحلة مشي ٤٠ كم</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">🎨</div><div class="axis-title">ثقافي</div></div><ul>
+              <li>تاريخ وفن قبطي</li>
+              <li>سياسة محلية</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">✝</div><div class="axis-title">روحي</div></div><ul>
+              <li>سيرة داود النبي · المرحلة الثانية</li>
+              <li>تأمل ومتابعة روحية أون لاين</li>
+              <li>النمو الروحي ووضوح الهدف</li>
+              <li>هدف روحي شخصي</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <!-- Year 3 -->
+        <div class="year-panel" data-year="3">
+          <div class="axes-grid">
+            <div class="axis"><div class="axis-head"><div class="axis-icon">⚓</div><div class="axis-title">كشفي</div></div><ul>
+              <li>تاريخ وهيكل المنظمة العالمية</li>
+              <li>تحلية مياه أو توليد طاقة في الخلاء</li>
+              <li>GPS والطرق الحديثة في الملاحة</li>
+              <li>تعلم ٤ عقد ودورات متقدمة</li>
+              <li>مسابقات كنز مفتوحة</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">⛵</div><div class="axis-title">إبحار</div></div><ul>
+              <li>الإبحار في الأعماق</li>
+              <li>مشروع حر بحري</li>
+              <li>تخطيط رحلة بحرية كاملة</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">🤝</div><div class="axis-title">اجتماعي</div></div><ul>
+              <li>الصورة الذاتية والتغيير</li>
+              <li>تنمية التواصل مع الآخرين</li>
+              <li>الزواج في المسيحية</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">💪</div><div class="axis-title">بدني</div></div><ul>
+              <li>رفع اللياقة (مشروعات تحديات)</li>
+              <li>مشي أسبوعي</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">🎨</div><div class="axis-title">ثقافي</div></div><ul>
+              <li>فن التمثيل</li>
+              <li>سياسة عالمية</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">✝</div><div class="axis-title">روحي</div></div><ul>
+              <li>سيرة داود النبي · المرحلة الثالثة (التوبة)</li>
+              <li>تأمل ومتابعة روحية أون لاين</li>
+              <li>الخدمة</li>
+              <li>هدف روحي شخصي</li>
+            </ul></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="seasons.html#advanced-2026">📜 خطة سيزون المتقدم 2026</a>
+        <a class="btn btn-ghost" href="#" onclick="alert('قريبًا 🚧'); return false;">طباعة المنهج</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ========== BEGINNER SECTOR ========== -->
+  <article id="beginner" class="sector-card sec-beginner">
+    <div class="sector-head">
+      <div class="sec-meta-row">
+        <span class="sec-pill">BEGINNER · مبتدئ</span>
+        <span class="sec-pill">GRADE P1 — P2</span>
+        <span class="sec-pill">٣ سنوات</span>
+        <span class="sec-pill sec-pill-draft">قيد الإعداد سويًا</span>
+      </div>
+      <h2>مبتدئ / مرشدات</h2>
+      <div class="saint-line">شفيع القطاع: مار جرجس — أيقونة المسؤولية والشجاعة</div>
+      <div class="scope-line">⛵ بحري · المحور: المسؤولية</div>
+    </div>
+
+    <div class="sector-body">
+      <div class="theme-block">
+        <div class="theme-eyebrow">تطبيق العنوان · مار جرجس والمسؤولية</div>
+        <h4>"غلبت الشر لما أخذت مسؤوليتي حتى لو ما كلّفنيش حد"</h4>
+        <p>مار جرجس كان جنديًا ناجحًا، لكنه اختار أن يتحمّل مسؤولية الإيمان حتى الموت. لما رأى الشر — لم يصمت، لم يبرّر، لم يهرب. أخذ المسؤولية. هذا ما نريد أن نعلمه للمبتدئ: <em>إن المسؤولية اختيار، وغلبة الشر تبدأ من قرار أن تأخذها.</em></p>
+      </div>
+
+      <div class="draft-note">
+        <strong>قيد الإعداد سويًا 🚧</strong><br>
+        خطة قطاع المبتدئ تحت التطوير المشترك. المنهج العام للقطاع (٣ سنوات × ٦ محاور) سيُضاف بناءً على الـ Master Program، وخطة السيزون التفصيلية سنبنيها معًا في الخطوات القادمة.
+        <br><br>
+        <strong>الخطوة القادمة المقترحة:</strong> اجتماع لتحديد رحلة مار جرجس عبر الـ ١٠ اجتماعات، والشخصيات/الدول المقترحة لكل أسبوع.
+      </div>
+    </div>
+  </article>
+
+  <!-- ========== CUBS SECTOR ========== -->
+  <article id="cubs" class="sector-card sec-cubs">
+    <div class="sector-head">
+      <div class="sec-meta-row">
+        <span class="sec-pill">CUBS · أشبال / زهرات</span>
+        <span class="sec-pill">GRADE 3 — 4</span>
+        <span class="sec-pill">٣ سنوات</span>
+        <span class="sec-pill sec-pill-draft">مقترح جديد</span>
+      </div>
+      <h2>أشبال / زهرات</h2>
+      <div class="saint-line">الشفيع المقترح: قيد الاقتراح من القيادة</div>
+      <div class="scope-line">⛵ بحري · المحور المقترح: الفرح والعطاء</div>
+    </div>
+
+    <div class="sector-body">
+      <div class="theme-block">
+        <div class="theme-eyebrow">تطبيق العنوان · مقترح للأشبال والزهرات</div>
+        <h4>"لما بتساعد وتفرح غيرك، بتكسر دايرة الشر"</h4>
+        <p>الأشبال صغار، والمفهوم الفلسفي للشر فوق سنهم. لكنهم يفهمون: <em>إن لما حد يضايقك ترد بابتسامة، ولما حد يكون حزين تساعده يفرح — ده هو "اغلب الشر بالخير" بلغتهم.</em></p>
+        <p style="margin-top: 8px;">المقترح: كل اجتماع نُعلِّمهم مهارة عطاء صغيرة (شارة فرح، طليعة مساعدة، تحدّي لطف أسبوعي).</p>
+      </div>
+
+      <div class="draft-note">
+        <strong>خطة مقترحة من عندي 🌱</strong><br>
+        منهج الأشبال للسنوات الثلاث (طبقًا للـ Master Program) جاهز للعرض هنا. لكن الشفيع والمحور لسة بحاجة تأكيد:
+        <ul style="margin: 12px 18px 0 0; padding-right: 18px;">
+          <li>هل نختار <strong>القديس أبانوب الشاب</strong> (نموذج الشهيد الصغير الذي اختار الخير حتى الموت)؟</li>
+          <li>أم <strong>الطفل يسوع</strong> (الذي قال «أُسمِع أنفع»، ينمو في الحكمة)؟</li>
+          <li>أم <strong>صموئيل النبي</strong> (الطفل الذي قال «تكلم يا رب فإن عبدك سامع»)؟</li>
+        </ul>
+      </div>
+
+      <div class="years-wrap">
+        <div class="years-tabs" data-sector="cubs">
+          <button class="year-tab active" data-year="1">العام الأول</button>
+          <button class="year-tab" data-year="2">العام الثاني</button>
+          <button class="year-tab" data-year="3">العام الثالث</button>
+        </div>
+
+        <div class="year-panel active" data-year="1">
+          <div class="axes-grid">
+            <div class="axis"><div class="axis-head"><div class="axis-icon">⚓</div><div class="axis-title">كشفي</div></div><ul>
+              <li>الدراية بتاريخ الحركة الكشفية عالميًا</li>
+              <li>حفظ قانون الكشافة</li>
+              <li>إتقان الثبات · الجمع · التمام · صفًا · انتباه</li>
+              <li>عمل نموذج بسيط وإتقان عقدتين وربطة</li>
+              <li>الإلمام بالعلامات السرية واستخدامها</li>
+              <li>تأثيرات الظواهر الجوية على البحر</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">⛵</div><div class="axis-title">إبحار</div></div><ul>
+              <li>فهم قانون الطفو (مبادئ)</li>
+              <li>فهم فكرة الدفة وقيادة المركب</li>
+              <li>معرفة الاتجاهات</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">🤝</div><div class="axis-title">اجتماعي</div></div><ul>
+              <li>تعلم مبادئ التعاون والمشاركة</li>
+              <li>معرفة أهمية السلوك الحسن والإتيكيت</li>
+              <li>خدمة مرتين بدار (الأيتام / المسنين)</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">💪</div><div class="axis-title">بدني</div></div><ul>
+              <li>معرفة طرق العوم — تعلم نوع واحد</li>
+              <li>ممارسة ألعاب مائية</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">🎨</div><div class="axis-title">ثقافي</div></div><ul>
+              <li>تعلم فن النحت (تعريف · مبادئ · عملي)</li>
+              <li>تربية أسماك الزينة (التعرف على البيئة المائية)</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">✝</div><div class="axis-title">روحي</div></div><ul>
+              <li>سيرة شفيع السنة</li>
+              <li>زرع مبدأ الصلاة بالأجبية</li>
+              <li>المواظبة على الصلاة قبل النوم يوميًا</li>
+              <li>هدف روحي شخصي</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="year-panel" data-year="2">
+          <div class="axes-grid">
+            <div class="axis"><div class="axis-head"><div class="axis-icon">⚓</div><div class="axis-title">كشفي</div></div><ul>
+              <li>قصة بادن باول</li>
+              <li>حفظ الوعد</li>
+              <li>الأعلام · بروتوكول</li>
+              <li>عمل نموذج وإتقان عقدتين وربطة</li>
+              <li>تعلم ٣ شفرات</li>
+              <li>الأمواج والرياح</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">⛵</div><div class="axis-title">إبحار</div></div><ul>
+              <li>تاريخ الإبحار</li>
+              <li>الإبحار الشراعي للمبتدئين</li>
+              <li>قراءة الخرائط</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">🤝</div><div class="axis-title">اجتماعي</div></div><ul>
+              <li>مساعدة الآخرين وعمل المعروف</li>
+              <li>روح الفريق</li>
+              <li>خدمة عامة بالكنيسة</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">💪</div><div class="axis-title">بدني</div></div><ul>
+              <li>معرفة طرق العوم — تعلم نوع ثاني</li>
+              <li>مسابقات كرة قدم</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">🎨</div><div class="axis-title">ثقافي</div></div><ul>
+              <li>تعلم فن التصوير (تعريف · مبادئ · عملي)</li>
+              <li>الإسعافات الأولية</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">✝</div><div class="axis-title">روحي</div></div><ul>
+              <li>سيرة شفيع السنة</li>
+              <li>المواظبة على الصلاة قبل النوم يوميًا</li>
+              <li>هدف روحي شخصي</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="year-panel" data-year="3">
+          <div class="axes-grid">
+            <div class="axis"><div class="axis-head"><div class="axis-icon">⚓</div><div class="axis-title">كشفي</div></div><ul>
+              <li>الدراية بتاريخ الحركة في مصر</li>
+              <li>كيفية نصب الخيام</li>
+              <li>إشعال النيران وأشكالها</li>
+              <li>عمل نموذج وإتقان عقدتين وربطة</li>
+              <li>إشارات موريس</li>
+              <li>الوحدات والمصطلحات البحرية</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">⛵</div><div class="axis-title">إبحار</div></div><ul>
+              <li>أنواع المراكب</li>
+              <li>أجزاء المركب</li>
+              <li>إتقان البوصلة والتعرف على GPS</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">🤝</div><div class="axis-title">اجتماعي</div></div><ul>
+              <li>الطاعة والإرشاد</li>
+              <li>أهمية القراءة والثقافة</li>
+              <li>خدمة وطنية</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">💪</div><div class="axis-title">بدني</div></div><ul>
+              <li>غطس Snorkeling</li>
+              <li>كرة الماء</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">🎨</div><div class="axis-title">ثقافي</div></div><ul>
+              <li>تعلم فن الرسم (تعريف · مبادئ · عملي)</li>
+              <li>أجزاء الجسم والاختلاف بين الجنسين</li>
+            </ul></div>
+
+            <div class="axis"><div class="axis-head"><div class="axis-icon">✝</div><div class="axis-title">روحي</div></div><ul>
+              <li>سيرة شفيع السنة</li>
+              <li>حضور القداس والتناول</li>
+              <li>الصلاة · التأمل الأسبوعي</li>
+              <li>هدف روحي شخصي</li>
+            </ul></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-coral" href="#" onclick="alert('قريبًا 🚧'); return false;">📜 خطة سيزون الأشبال 2026 (مقترح)</a>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<div id="footer-mount"></div>
+
+<script src="assets/zs.js"></script>
+<script>
+  ZS.requireAuth();
+  ZS.mountChrome('sectors');
+
+  // Year tabs
+  document.querySelectorAll('.years-tabs').forEach(tabs => {
+    const sector = tabs.dataset.sector;
+    const sectorCard = tabs.closest('.sector-card');
+    tabs.querySelectorAll('.year-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabs.querySelectorAll('.year-tab').forEach(t => t.classList.remove('active'));
+        sectorCard.querySelectorAll('.year-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        sectorCard.querySelector(`.year-panel[data-year="${btn.dataset.year}"]`).classList.add('active');
+      });
+    });
+  });
+
+  // Smooth anchor scroll
+  if (window.location.hash) {
+    setTimeout(() => {
+      const el = document.querySelector(window.location.hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 200);
+  }
+</script>
+
+</body>
+</html>

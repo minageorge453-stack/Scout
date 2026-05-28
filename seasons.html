@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خطط السيزون · كشافة كنائس زايد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Reem+Kufi:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+</head>
+<body>
+<div id="topnav-mount"></div>
+<div class="page-wrap">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">SEASONS · خطط السيزون</div>
+    <h1>خطط السيزون</h1>
+    <p>أرشيف السيزونات السابقة، السيزون الحالي (٢٠٢٦)، ومسودات السيزونات القادمة.</p>
+  </div>
+
+  <section class="section">
+    <div class="grid grid-3">
+      <a class="card card-coral card-link" id="advanced-2026" href="#" onclick="alert('سيتم ربط هذه الصفحة بـ season_plan_v4_1.html المعدل في الخطوة القادمة 🚧'); return false;">
+        <div class="card-eyebrow">CURRENT · 2026</div>
+        <div class="card-title">سيزون متقدم 2026</div>
+        <div class="card-desc">داود النبي · لا يغلبنّك الشر بل اغلب الشر بالخير. ١٠ اجتماعات · ٤ مراحل: نفهم → نقوى → نواجه → نقود.</div>
+        <div class="card-cta">عرض الخطة ←</div>
+      </a>
+
+      <div class="card card-gold">
+        <div class="card-eyebrow">DRAFT · 2026</div>
+        <div class="card-title">سيزون مبتدئ 2026</div>
+        <div class="card-desc">مار جرجس · المسؤولية. قيد الإعداد سويًا — هنبنيها معًا في الاجتماعات القادمة.</div>
+      </div>
+
+      <div class="card card-indigo">
+        <div class="card-eyebrow">PROPOSAL · 2026</div>
+        <div class="card-title">سيزون أشبال 2026</div>
+        <div class="card-desc">شفيع مقترح. الفكرة: الفرح والعطاء كأبسط طرق لكسر دائرة الشر. خطة مقترحة جاهزة للمراجعة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">ARCHIVE · أرشيف السيزونات السابقة</div>
+      <h2 class="section-title">السيزونات اللي خدتها زايد</h2>
+      <p class="section-sub">يحتاج لتعبئة من القيادة — العناوين والشفعاء والخطط الأصلية للسيزونات السابقة.</p>
+    </div>
+    <div class="card" style="text-align: center; color: var(--ink-soft);">
+      <p>📚 لا توجد سيزونات مؤرشفة بعد. اضغط على "إضافة سيزون قديم" لإدخالها يدويًا في المرحلة القادمة.</p>
+      <div style="margin-top: 16px;"><button class="btn btn-ghost" onclick="alert('قريبًا 🚧')">إضافة سيزون قديم</button></div>
+    </div>
+  </section>
+</div>
+<div id="footer-mount"></div>
+<script src="assets/zs.js"></script>
+<script>
+  ZS.requireAuth();
+  ZS.mountChrome('seasons');
+</script>
+</body>
+</html>

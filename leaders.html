@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>القادة والتوزيع · كشافة كنائس زايد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Reem+Kufi:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+  .input-zone {
+    background: linear-gradient(135deg, rgba(45, 138, 150, 0.06), rgba(255, 107, 91, 0.04));
+    border: 2px dashed var(--teal-light);
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .input-zone h3 {
+    font-family: var(--font-accent);
+    color: var(--teal-deep);
+    margin-bottom: 8px;
+  }
+  .org-tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+  }
+  .tree-node {
+    background: #fff;
+    border: 1px solid rgba(45, 138, 150, 0.15);
+    border-radius: 14px;
+    padding: 16px 22px;
+    min-width: 220px;
+    text-align: center;
+    box-shadow: 0 4px 14px var(--shadow);
+  }
+  .tree-node strong {
+    display: block;
+    font-family: var(--font-accent);
+    color: var(--indigo);
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .tree-node span {
+    font-family: var(--font-modern);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--teal-deep);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .tn-top { background: linear-gradient(135deg, var(--teal), var(--teal-deep)); color: #fff; }
+  .tn-top strong, .tn-top span { color: #fff; }
+  .tree-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>
+</head>
+<body>
+<div id="topnav-mount"></div>
+<div class="page-wrap">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">LEADERS · القادة</div>
+    <h1>القادة والتوزيع</h1>
+    <p>شجرة القيادة الكاملة للمجموعة الكشفية لكنائس زايد — تنتظر إدخال الأسماء والتوزيعات الفعلية.</p>
+  </div>
+
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">ORG TREE · هيكل القيادة</div>
+      <h2 class="section-title">الهيكل المقترح (يحتاج تعبئة)</h2>
+      <p class="section-sub">الهيكل العام مأخوذ من كشافة مارمرقس، لكن الأسماء والتوزيعات هتدخلها بنفسك لأنها مختلفة عندكم.</p>
+    </div>
+
+    <div class="org-tree">
+      <div class="tree-node tn-top">
+        <strong>قائد المجموعة العام</strong>
+        <span>HEAD · بانتظار الإسم</span>
+      </div>
+      <div class="tree-row">
+        <div class="tree-node">
+          <strong>مساعد قائد المجموعة</strong>
+          <span>ASSISTANT 1</span>
+        </div>
+        <div class="tree-node">
+          <strong>مساعد قائد المجموعة</strong>
+          <span>ASSISTANT 2</span>
+        </div>
+      </div>
+      <div class="tree-row">
+        <div class="tree-node">
+          <strong>قائد قطاع متقدم</strong>
+          <span>ADVANCED</span>
+        </div>
+        <div class="tree-node">
+          <strong>قائد قطاع مبتدئ</strong>
+          <span>BEGINNER</span>
+        </div>
+        <div class="tree-node">
+          <strong>قائد قطاع أشبال</strong>
+          <span>CUBS</span>
+        </div>
+        <div class="tree-node">
+          <strong>قائد العشيرة</strong>
+          <span>RANGERS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">YOUR INPUT · من قِبَلك</div>
+      <h2 class="section-title">القادة والتوزيع الفعلي</h2>
+    </div>
+
+    <div class="input-zone">
+      <h3>🚧 تنتظر التعبئة منك</h3>
+      <p style="color: var(--ink-soft); margin: 12px auto 20px; max-width: 600px;">
+        ذكرتَ أن أسماء القادة وتوزيعاتهم مختلفة عن مارمرقس. في الإصدار القادم، نضيف نموذج إدخال يدوي للقائد العام (Admin) ليُدخل:
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; max-width: 700px; margin: 0 auto;">
+        <div class="card" style="text-align: right;">
+          <strong style="color: var(--indigo);">القادة الأفراد</strong>
+          <p style="font-size: 12px; color: var(--ink-soft); margin-top: 6px;">الاسم · الدور · القطاع · الفريق · السنة</p>
+        </div>
+        <div class="card" style="text-align: right;">
+          <strong style="color: var(--indigo);">توزيع القطاعات</strong>
+          <p style="font-size: 12px; color: var(--ink-soft); margin-top: 6px;">مين قائد كل فريق · مين مساعد · من في كل لجنة</p>
+        </div>
+        <div class="card" style="text-align: right;">
+          <strong style="color: var(--indigo);">اللجان</strong>
+          <p style="font-size: 12px; color: var(--ink-soft); margin-top: 6px;">ميديا · افتقاد · طبية · سكرتارية · مالية · لوجيستيك</p>
+        </div>
+      </div>
+      <button class="btn btn-primary" style="margin-top: 24px;" onclick="alert('قريبًا — هنبني نموذج إدخال كامل في الخطوة القادمة 🚧')">
+        إضافة قائد جديد
+      </button>
+    </div>
+  </section>
+</div>
+<div id="footer-mount"></div>
+<script src="assets/zs.js"></script>
+<script>
+  ZS.requireAuth();
+  ZS.mountChrome('leaders');
+</script>
+</body>
+</html>
