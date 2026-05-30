@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قطاع أشبال وزهرات · موسم 2026 · كشافة كنائس زايد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Reem+Kufi:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+  :root {
+    --cub-orange: #ff8c42;
+    --cub-orange-deep: #e6692a;
+    --cub-cream: #fff5e6;
+    --cub-cream-deep: #ffe9c8;
+    --cub-warm: #fff9f0;
+  }
+
+  /* =========== HERO — لون برتقالي دافئ للسن الصغير =========== */
+  .sec-hero {
+    position: relative;
+    padding: 80px 24px 60px;
+    background: linear-gradient(160deg, #ff8c42 0%, #ff6b35 100%);
+    color: #fff;
+    overflow: hidden;
+    text-align: center;
+  }
+  .sec-hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(255,235,180,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .sec-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -150px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,200,100,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .sec-hero-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+  .hero-eyebrow {
+    font-family: var(--font-accent);
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: #fff5d6;
+    margin-bottom: 16px;
+    opacity: 0.95;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 84px);
+    font-weight: 700;
+    line-height: 1;
+    margin: 0 0 12px;
+    letter-spacing: -2px;
+  }
+  .hero-subtitle {
+    font-family: var(--font-modern);
+    font-size: 18px;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  @media (max-width: 700px) { .hero-meta { grid-template-columns: repeat(2, 1fr); } }
+  .hero-meta-item {
+    padding: 18px 12px;
+    background: rgba(255,255,255,0.12);
+    border-top: 2px solid #fff5d6;
+    text-align: center;
+    border-radius: 8px;
+  }
+  .hero-meta-item .label {
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: #fff5d6;
+    margin-bottom: 6px;
+  }
+  .hero-meta-item .value {
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: #fff;
+    line-height: 1.3;
+  }
+
+  /* =========== SECTIONS =========== */
+  .sec-section {
+    padding: 64px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .sec-section-alt {
+    background: var(--cub-warm);
+    padding: 64px 24px;
+  }
+  .sec-section-alt > .inner { max-width: 1100px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 40px; }
+  .section-eyebrow {
+    font-family: var(--font-accent);
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--cub-orange-deep);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 5vw, 46px);
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.15;
+  }
+
+  /* =========== PATRON: ANBA MOUSA =========== */
+  .patron-wrap {
+    background: linear-gradient(135deg, #2a1810 0%, #4a2818 100%);
+    color: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .patron-inner {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 0;
+  }
+  @media (max-width: 800px) { .patron-inner { grid-template-columns: 1fr; } }
+  .patron-portrait {
+    background: linear-gradient(160deg, #4a2818 0%, #2a1810 100%);
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .patron-portrait svg {
+    width: 100%;
+    max-width: 220px;
+    filter: drop-shadow(0 10px 24px rgba(255,140,66,0.4));
+  }
+  .patron-text { padding: 44px 38px; }
+  .patron-text .section-eyebrow { color: #ffd28a; text-align: right; margin-bottom: 16px; }
+  .patron-text h2 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 50px);
+    color: #fff;
+    margin: 0 0 12px;
+  }
+  .patron-tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+    color: #ffd28a;
+    margin-bottom: 24px;
+  }
+  .patron-body {
+    font-size: 16px;
+    line-height: 1.95;
+    color: rgba(255,255,255,0.88);
+    margin-bottom: 16px;
+  }
+  .patron-body strong { color: #ffd28a; }
+  .patron-quote {
+    background: rgba(255,210,138,0.1);
+    border-right: 3px solid #ffd28a;
+    padding: 18px 22px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: #fff;
+    line-height: 1.6;
+  }
+  .patron-traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .patron-trait {
+    background: rgba(255,210,138,0.15);
+    color: #ffd28a;
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-family: var(--font-accent);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    border: 1px solid rgba(255,210,138,0.3);
+  }
+
+  /* =========== AXES OVERVIEW =========== */
+  .axes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (max-width: 700px) { .axes-grid { grid-template-columns: repeat(2, 1fr); } }
+  .axis-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 18px;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--axis-color);
+    transition: transform 0.3s;
+  }
+  .axis-card:hover { transform: translateY(-4px); }
+  .axis-card .emoji {
+    font-size: 44px;
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+  .axis-card h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  /* =========== TOC =========== */
+  .cub-toc {
+    background: var(--cub-cream);
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 36px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .cub-toc-chip {
+    background: #fff;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,140,66,0.2);
+    text-decoration: none;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cub-toc-chip:hover {
+    background: var(--cub-warm);
+    border-color: var(--cub-orange);
+    color: var(--cub-orange-deep);
+    transform: translateY(-1px);
+  }
+  .cub-toc-chip.special {
+    border-color: var(--gold);
+    background: #fffbf2;
+  }
+  .cub-toc-chip.ceremony {
+    border-color: #8b5cf6;
+    background: #f5f0ff;
+  }
+  .cub-toc-chip .date-tag {
+    font-family: var(--font-accent);
+    font-size: 11px;
+    color: var(--cub-orange-deep);
+    background: var(--cub-cream);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .cub-toc-chip .title {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* =========== CUB MEETING CARD =========== */
+  .cub-card {
+    background: #fff;
+    border-radius: 20px;
+    margin-bottom: 22px;
+    border: 1px solid rgba(255,140,66,0.15);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .cub-card:hover {
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+  .cub-card.ceremony {
+    border: 2px solid #8b5cf6;
+    background: linear-gradient(135deg, #fff 0%, #faf7ff 100%);
+  }
+  .cub-header {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 22px 26px;
+    background: linear-gradient(135deg, var(--cub-cream) 0%, var(--cub-warm) 100%);
+    border-bottom: 1px solid rgba(255,140,66,0.1);
+    cursor: pointer;
+  }
+  .cub-card.ceremony .cub-header {
+    background: linear-gradient(135deg, #f5f0ff 0%, #fafaff 100%);
+  }
+  @media (max-width: 700px) {
+    .cub-header { grid-template-columns: 80px 1fr; padding: 18px 20px; }
+    .cub-header .toggle-chev { display: none; }
+  }
+  .cub-date {
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: var(--cub-orange-deep);
+    background: #fff;
+    border-radius: 12px;
+    padding: 10px 8px;
+    text-align: center;
+    border: 2px solid var(--cub-orange);
+    line-height: 1.3;
+    font-weight: 700;
+  }
+  .cub-card.ceremony .cub-date {
+    color: #6d28d9;
+    border-color: #8b5cf6;
+  }
+  .cub-info .eyebrow {
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--cub-orange-deep);
+    margin-bottom: 4px;
+  }
+  .cub-card.ceremony .cub-info .eyebrow { color: #6d28d9; }
+  .cub-info h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--ink);
+    margin: 0 0 4px;
+    line-height: 1.3;
+  }
+  .cub-info .slogan {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .toggle-chev {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--cub-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cub-orange-deep);
+    font-size: 14px;
+    transition: transform 0.3s;
+  }
+  .cub-card.open .toggle-chev { transform: rotate(180deg); }
+  .cub-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  .cub-card.open .cub-body { max-height: 10000px; }
+  .cub-body-inner { padding: 28px; }
+
+  .objective-box {
+    background: var(--cub-cream);
+    border-right: 4px solid var(--cub-orange);
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  .objective-box strong {
+    color: var(--cub-orange-deep);
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--font-accent);
+    font-size: 11px;
+    letter-spacing: 3px;
+  }
+
+  /* =========== STATIONS GRID =========== */
+  .stations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 700px) { .stations-grid { grid-template-columns: 1fr; } }
+  .station {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px 22px;
+    border-right: 4px solid var(--axis-color, #888);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .station-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .station-axis {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .axis-emoji { font-size: 18px; }
+  .axis-name {
+    font-family: var(--font-accent);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--axis-color, #888);
+    font-weight: 700;
+  }
+  .station-duration {
+    font-family: var(--font-accent);
+    font-size: 11px;
+    color: var(--cub-orange-deep);
+    background: var(--cub-cream);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .station-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--ink);
+    margin: 0 0 8px;
+    line-height: 1.3;
+  }
+  .station-content {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    margin: 0;
+  }
+
+  /* =========== VERSE =========== */
+  .cub-verse {
+    background: linear-gradient(135deg, #fffbf2 0%, #fff8e8 100%);
+    padding: 22px 26px;
+    border-radius: 12px;
+    border-right: 4px solid var(--gold);
+    margin: 22px 0;
+    text-align: center;
+  }
+  .cub-verse p {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--ink);
+    margin: 0 0 6px;
+    line-height: 1.5;
+  }
+  .cub-verse cite {
+    font-family: var(--font-accent);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #b8860b;
+    font-style: normal;
+  }
+
+  /* =========== MOSES BOX =========== */
+  .moses-box {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 16px;
+    align-items: start;
+    background: linear-gradient(135deg, #2a1810 0%, #4a2818 100%);
+    color: #fff;
+    padding: 22px 24px;
+    border-radius: 12px;
+    margin: 22px 0;
+  }
+  .moses-emoji {
+    font-size: 36px;
+    text-align: center;
+    line-height: 1;
+  }
+  .moses-label {
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #ffd28a;
+    margin-bottom: 8px;
+  }
+  .moses-box p {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.92);
+  }
+
+  /* =========== CLOSING NOTE =========== */
+  .closing-note {
+    background: var(--cub-warm);
+    border: 1px dashed var(--cub-orange);
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+  .closing-note strong { color: var(--cub-orange-deep); }
+
+  /* =========== CEREMONY ITEMS =========== */
+  .ceremony-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .ceremony-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    background: #faf7ff;
+    padding: 18px 20px;
+    border-radius: 10px;
+    border-right: 3px solid #8b5cf6;
+  }
+  .ceremony-type {
+    font-family: var(--font-accent);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #6d28d9;
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-align: center;
+    height: fit-content;
+    font-weight: 700;
+  }
+  .ceremony-content h5 {
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: var(--ink);
+    margin: 0 0 5px;
+  }
+  .ceremony-content p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* =========== BACK NAV =========== */
+  .back-bar {
+    background: var(--paper);
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255,140,66,0.15);
+  }
+  .back-bar a {
+    color: var(--cub-orange-deep);
+    text-decoration: none;
+    font-family: var(--font-modern);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .back-bar a:hover { color: var(--cub-orange); }
+</style>
+</head>
+<body>
+
+<!-- ========== TOP NAV ========== -->
+<div id="topnav-mount"></div>
+
+<!-- ========== BACK NAV ========== -->
+<div class="back-bar">
+  <a href="sectors.html">← العودة لصفحة القطاعات</a>
+</div>
+
+<!-- ========== HERO ========== -->
+<header class="sec-hero">
+  <div class="sec-hero-inner">
+    <div class="hero-eyebrow">SEASON 2026 · CUBS SECTOR</div>
+    <h1 class="hero-title">السيـزون</h1>
+    <p class="hero-subtitle">قطاع أشبال وزهرات · المجموعة الكشفية لكنائس زايد</p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="label">SAINT</div>
+        <div class="value">الأنبا موسى الأسود</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">CORE</div>
+        <div class="value">التغيير</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">AGES</div>
+        <div class="value">٣ - ٥ ابتدائي</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">MEETINGS</div>
+        <div class="value">١٠ لقاءات</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== PATRON: ANBA MOUSA ========== -->
+<section class="sec-section-alt">
+  <div class="inner">
+    <div class="patron-wrap">
+      <div class="patron-inner">
+        <div class="patron-portrait">
+          <svg viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="halo2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffd28a" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#ffd28a" stop-opacity="0.3"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Halo -->
+            <circle cx="100" cy="85" r="48" fill="url(#halo2)" opacity="0.7"/>
+            <circle cx="100" cy="85" r="45" fill="none" stroke="#ffd28a" stroke-width="1.2" opacity="0.9"/>
+
+            <!-- Face (dark skin tone for موسى الأسود) -->
+            <circle cx="100" cy="85" r="32" fill="#5a3a28" opacity="0.95"/>
+
+            <!-- Eyes -->
+            <ellipse cx="92" cy="83" rx="2.5" ry="2" fill="#fff"/>
+            <ellipse cx="108" cy="83" rx="2.5" ry="2" fill="#fff"/>
+            <circle cx="92" cy="83" r="1" fill="#000"/>
+            <circle cx="108" cy="83" r="1" fill="#000"/>
+
+            <!-- Beard (long monk beard) -->
+            <path d="M75 100 Q100 145 125 100 L122 130 Q100 150 78 130 Z" fill="#1f1108" opacity="0.95"/>
+
+            <!-- Monk robe (black/dark) -->
+            <path d="M50 140 Q100 152 150 140 L160 280 L40 280 Z" fill="#1a0f08" opacity="0.92"/>
+
+            <!-- Klobok (monk hood) -->
+            <path d="M68 65 Q100 35 132 65 L130 80 L70 80 Z" fill="#0d0805" opacity="0.95"/>
+            <path d="M68 65 Q100 50 132 65 L100 70 Z" fill="#1f1108"/>
+
+            <!-- Cross on klobok -->
+            <g transform="translate(100 56)" opacity="0.95">
+              <rect x="-1.5" y="0" width="3" height="12" fill="#ffd28a"/>
+              <rect x="-5" y="3" width="10" height="3" fill="#ffd28a"/>
+            </g>
+
+            <!-- Big cross on chest -->
+            <g transform="translate(95 175)" opacity="0.95">
+              <rect x="-2" y="0" width="4" height="32" fill="#ffd28a"/>
+              <rect x="-9" y="9" width="18" height="4" fill="#ffd28a"/>
+            </g>
+
+            <!-- Prayer rope -->
+            <path d="M60 165 Q70 175 60 195" fill="none" stroke="#8b4513" stroke-width="1.5" opacity="0.8"/>
+            <circle cx="62" cy="172" r="1.5" fill="#5a3a28" opacity="0.9"/>
+            <circle cx="58" cy="180" r="1.5" fill="#5a3a28" opacity="0.9"/>
+            <circle cx="62" cy="188" r="1.5" fill="#5a3a28" opacity="0.9"/>
+
+            <!-- Hand position (prayer) -->
+            <ellipse cx="135" cy="195" rx="14" ry="22" fill="#5a3a28" opacity="0.85" transform="rotate(-15 135 195)"/>
+
+            <!-- Open scripture/book -->
+            <rect x="115" y="185" width="40" height="25" fill="#fff5e6" opacity="0.9" rx="2"/>
+            <line x1="135" y1="187" x2="135" y2="208" stroke="#5a3a28" stroke-width="0.5"/>
+            <line x1="120" y1="192" x2="130" y2="192" stroke="#5a3a28" stroke-width="0.3"/>
+            <line x1="120" y1="196" x2="130" y2="196" stroke="#5a3a28" stroke-width="0.3"/>
+            <line x1="140" y1="192" x2="150" y2="192" stroke="#5a3a28" stroke-width="0.3"/>
+            <line x1="140" y1="196" x2="150" y2="196" stroke="#5a3a28" stroke-width="0.3"/>
+          </svg>
+        </div>
+        <div class="patron-text">
+          <div class="section-eyebrow">PATRON SAINT · شفيع القطاع</div>
+          <h2>الأنبا موسى الأسود</h2>
+          <div class="patron-tagline">اللص اللي بقى قديس · رمز التغيير الكامل</div>
+          <p class="patron-body">
+            ليه الأنبا موسى للأشبال؟ لأنه <strong>أحلى نموذج للتغيير</strong>. كان لصّ خطير، رئيس عصابة، الكل خايف منه. وفي يوم سمع صوت ربنا، قرر يتغيّر — ومن ساعتها بقى <strong>أعظم قديس</strong> في تاريخ الكنيسة.
+          </p>
+          <p class="patron-body">
+            بنحب الأطفال يعرفوا حياته لأن قصته بتقول: <strong>أي حد يقدر يتغيّر للأحسن، مهما كان مكانه دلوقتي</strong>. الأنبا موسى ما اتولدش قديس — اختار يبقى قديس. وكل واحد فيكم يقدر يختار يبقى أحلى من اللي هو عليه.
+          </p>
+          <div class="patron-quote">
+            «أيها الإخوة، إن لم يمت الإنسان عن نفسه، لا يقدر أن يحيا لله»
+          </div>
+          <div class="patron-traits">
+            <span class="patron-trait">التغيير ممكن</span>
+            <span class="patron-trait">قوي + متضع</span>
+            <span class="patron-trait">حياة جديدة</span>
+            <span class="patron-trait">شفيع التائبين</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== AXES OVERVIEW ========== -->
+<section class="sec-section">
+  <div class="section-header">
+    <div class="section-eyebrow">FOUR AXES · أربع محاور</div>
+    <h2 class="section-title">كل لقاء بيلمس ٤ جوانب</h2>
+  </div>
+  <div class="axes-grid" id="axes-grid"></div>
+</section>
+
+<!-- ========== MEETINGS ========== -->
+<section class="sec-section-alt">
+  <div class="inner">
+    <div class="section-header">
+      <div class="section-eyebrow">10 MEETINGS · جدول السيزون</div>
+      <h2 class="section-title">رحلة من ٦ يونيو لـ ٢٩ أغسطس</h2>
+    </div>
+
+    <div class="cub-toc" id="cub-toc"></div>
+    <div id="cub-meetings-list"></div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<div id="footer-mount"></div>
+
+<!-- ========== SCRIPTS ========== -->
+<script src="assets/zs.js"></script>
+<script src="assets/season_cubs_2026.js"></script>
+<script src="assets/cubs_renderer.js"></script>
+<script>
+  ZS.requireAuth();
+  ZS.mountChrome('sectors');
+
+  // رسم المحاور الأربعة
+  const axesGrid = document.getElementById('axes-grid');
+  if (axesGrid && typeof SEASON_CUBS_2026 !== 'undefined') {
+    axesGrid.innerHTML = SEASON_CUBS_2026.axes.map(a => `
+      <div class="axis-card" style="--axis-color: ${a.color};">
+        <div class="emoji">${a.emoji}</div>
+        <h3>${a.name}</h3>
+      </div>
+    `).join('');
+  }
+
+  // رسم الاجتماعات
+  if (typeof renderCubsSeason === 'function') {
+    renderCubsSeason(SEASON_CUBS_2026, {
+      toc: 'cub-toc',
+      list: 'cub-meetings-list'
+    });
+  }
+</script>
+</body>
+</html>

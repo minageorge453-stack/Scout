@@ -8,74 +8,1092 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Reem+Kufi:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/shared.css">
+<style>
+  .proto-hero {
+    background: linear-gradient(160deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+    color: #fff;
+    padding: 64px 24px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .proto-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(212,167,58,0.18) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .proto-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -120px; left: -120px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(45,138,150,0.22) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .proto-hero-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+  .proto-hero .eyebrow {
+    font-family: var(--font-accent);
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .proto-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 6vw, 60px);
+    margin: 0 0 12px;
+    line-height: 1.1;
+  }
+  .proto-hero .lead {
+    font-size: 16px;
+    color: rgba(255,255,255,0.82);
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.85;
+  }
+
+  /* =========== INDEX (TOC) =========== */
+  .proto-index {
+    background: var(--paper-warm);
+    padding: 36px 24px;
+    border-bottom: 1px solid rgba(45,138,150,0.08);
+  }
+  .proto-index-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .index-title {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .index-title h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .index-title p {
+    color: var(--ink-soft);
+    font-size: 14px;
+    margin: 0;
+  }
+  .index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .index-card {
+    background: #fff;
+    padding: 18px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(45,138,150,0.12);
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.2s;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .index-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    border-color: var(--teal);
+  }
+  .index-num {
+    width: 44px;
+    height: 44px;
+    background: var(--teal-fade);
+    color: var(--teal-deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .index-info h4 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: var(--ink);
+    margin: 0 0 2px;
+  }
+  .index-info p {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* =========== MAIN =========== */
+  .proto-main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  .proto-card {
+    background: #fff;
+    border-radius: 18px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(45,138,150,0.12);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    overflow: hidden;
+    scroll-margin-top: 80px;
+  }
+  .proto-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 28px;
+    background: linear-gradient(135deg, var(--paper-warm) 0%, var(--paper) 100%);
+    border-bottom: 1px solid rgba(45,138,150,0.1);
+    cursor: pointer;
+    user-select: none;
+  }
+  .proto-card.open .proto-header {
+    background: linear-gradient(135deg, var(--teal-fade) 0%, var(--paper) 100%);
+  }
+  .proto-num-circle {
+    width: 56px;
+    height: 56px;
+    background: #fff;
+    color: var(--teal-deep);
+    border: 2px solid var(--teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .proto-card.open .proto-num-circle {
+    background: var(--teal-deep);
+    color: #fff;
+  }
+  .proto-title-block {
+    flex: 1;
+  }
+  .proto-title-block .eyebrow {
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--coral-deep);
+    margin-bottom: 4px;
+  }
+  .proto-title-block h3 {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 3vw, 26px);
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.3;
+  }
+  .proto-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--teal-deep);
+    font-size: 14px;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .proto-card.open .proto-toggle { transform: rotate(180deg); }
+
+  .proto-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease;
+  }
+  .proto-card.open .proto-body { max-height: 6000px; }
+  .proto-body-inner {
+    padding: 28px 36px;
+  }
+  @media (max-width: 600px) { .proto-body-inner { padding: 22px 22px; } }
+
+  .proto-intro {
+    background: var(--teal-fade);
+    border-right: 4px solid var(--teal);
+    padding: 16px 22px;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.95;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .proto-intro strong { color: var(--teal-deep); }
+
+  .proto-section {
+    margin-bottom: 28px;
+  }
+  .proto-section h4 {
+    font-family: var(--font-display);
+    font-size: 19px;
+    color: var(--coral-deep);
+    margin: 0 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--paper-warm);
+  }
+  .proto-section h5 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: var(--teal-deep);
+    margin: 18px 0 10px;
+  }
+  .proto-section p {
+    color: var(--ink-soft);
+    line-height: 1.95;
+    margin: 0 0 12px;
+    font-size: 14.5px;
+  }
+  .proto-section ul, .proto-section ol {
+    padding-right: 22px;
+    margin: 10px 0;
+  }
+  .proto-section ul li, .proto-section ol li {
+    color: var(--ink-soft);
+    line-height: 1.9;
+    margin-bottom: 6px;
+    font-size: 14.5px;
+  }
+  .proto-section strong { color: var(--ink); }
+
+  /* =========== TABLES =========== */
+  .proto-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 18px;
+    font-size: 14px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .proto-table th {
+    background: var(--teal-fade);
+    color: var(--teal-deep);
+    padding: 12px 14px;
+    font-family: var(--font-accent);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-align: right;
+    border-bottom: 2px solid var(--teal);
+  }
+  .proto-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--paper-warm);
+    color: var(--ink-soft);
+    line-height: 1.7;
+    vertical-align: top;
+  }
+  .proto-table tbody tr:hover { background: var(--paper-warm); }
+  .proto-table tbody tr:last-child td { border-bottom: none; }
+  .proto-table .class-tag {
+    background: var(--coral);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: var(--font-accent);
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .proto-table .class-tag.b { background: var(--teal); }
+  .proto-table .class-tag.c { background: var(--gold); }
+
+  /* =========== STAGES (Admission) =========== */
+  .stages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 18px 0;
+  }
+  @media (max-width: 700px) { .stages-grid { grid-template-columns: 1fr; } }
+  .stage-card {
+    background: var(--paper-warm);
+    border-radius: 12px;
+    padding: 20px 22px;
+    border-top: 3px solid var(--coral);
+  }
+  .stage-card.s2 { border-top-color: var(--teal); }
+  .stage-card.s3 { border-top-color: var(--gold); }
+  .stage-card .stage-num {
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--coral-deep);
+    margin-bottom: 6px;
+  }
+  .stage-card h5 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .stage-card p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    margin: 0 0 10px;
+  }
+  .stage-card .target {
+    background: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--coral-deep);
+    display: inline-block;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  /* =========== HIERARCHY DUTIES =========== */
+  .duty-card {
+    background: var(--paper-warm);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 14px;
+    border-right: 4px solid var(--indigo);
+  }
+  .duty-card.deputy { border-right-color: var(--coral); }
+  .duty-card.group { border-right-color: var(--teal); }
+  .duty-card.sector { border-right-color: var(--gold); }
+  .duty-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .duty-card h5 {
+    font-family: var(--font-display);
+    font-size: 19px;
+    color: var(--ink);
+    margin: 0;
+  }
+  .duty-card .reports-to {
+    font-size: 11px;
+    color: var(--ink-soft);
+    background: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: var(--font-accent);
+    letter-spacing: 1px;
+  }
+  .duty-card .duties-list { margin-top: 8px; }
+
+  /* =========== HIGHLIGHTS =========== */
+  .highlight-box {
+    background: linear-gradient(135deg, #fff4ed 0%, #ffe8db 100%);
+    border: 1px solid var(--coral);
+    border-radius: 10px;
+    padding: 16px 22px;
+    margin: 16px 0;
+    color: var(--coral-deep);
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  .highlight-box.gold {
+    background: linear-gradient(135deg, #fffbf2 0%, #fff8e8 100%);
+    border-color: var(--gold);
+    color: #8b6914;
+  }
+  .highlight-box.teal {
+    background: var(--teal-fade);
+    border-color: var(--teal);
+    color: var(--teal-deep);
+  }
+  .highlight-box strong { font-weight: 700; }
+
+  /* =========== ATTRIBUTION =========== */
+  .attribution {
+    text-align: center;
+    padding: 28px;
+    background: var(--paper-warm);
+    border-radius: 12px;
+    margin-top: 36px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    line-height: 1.85;
+  }
+  .attribution strong { color: var(--ink); }
+
+  /* =========== PRINT =========== */
+  @media print {
+    .proto-body { max-height: none !important; overflow: visible !important; }
+    .proto-card { page-break-inside: avoid; }
+    .proto-toggle, #topnav-mount, #footer-mount { display: none !important; }
+  }
+</style>
 </head>
 <body>
+
 <div id="topnav-mount"></div>
-<div class="page-wrap">
-  <div class="page-hero">
-    <div class="page-hero-eyebrow">PROTOCOLS · البروتوكولات</div>
-    <h1>البروتوكولات الرسمية</h1>
-    <p>القواعد التي تنظم عمل المجموعة الكشفية لكنائس زايد — مأخوذة من نظام مارمرقس، ومُكيَّفة لظروفنا.</p>
+
+<header class="proto-hero">
+  <div class="proto-hero-inner">
+    <div class="eyebrow">PROTOCOLS · البروتوكولات</div>
+    <h1>اللوائح والبروتوكولات</h1>
+    <p class="lead">
+      ستة بروتوكولات أساسية تنظّم عمل المجموعة الكشفية لكنائس زايد · مستوحاة من اللوائح المعتمدة لكشافة الكنيسة القبطية، ومُكيَّفة لتناسب طبيعة مجموعتنا البحرية
+    </p>
   </div>
+</header>
 
-  <section class="section">
-    <div class="grid grid-2">
-      <div class="card card-teal">
-        <div class="card-eyebrow">PROTOCOL 01</div>
-        <div class="card-title">مسابقة قبول الأشبال والزهرات الجدد</div>
-        <div class="card-desc">٣ مراحل: التحريري · الشفوي · معسكر الاختيار. الهدف: ٣٠ ولد + ٣٠ بنت.</div>
-        <div class="card-cta">قريبًا · من 12-Admission_Protocol ←</div>
+<!-- Index / TOC -->
+<section class="proto-index">
+  <div class="proto-index-inner">
+    <div class="index-title">
+      <h2>قائمة البروتوكولات</h2>
+      <p>دوس على أي بروتوكول لفتحه — أو افتح الكل وادوس Ctrl+P للطباعة</p>
+    </div>
+    <div class="index-grid">
+      <a class="index-card" href="#proto-1" onclick="openProto(1)">
+        <div class="index-num">١</div>
+        <div class="index-info">
+          <h4>مهمة الكشافة</h4>
+          <p>الرؤية الكبرى والأهداف</p>
+        </div>
+      </a>
+      <a class="index-card" href="#proto-2" onclick="openProto(2)">
+        <div class="index-num">٢</div>
+        <div class="index-info">
+          <h4>أساسيات الحركة الكشفية</h4>
+          <p>تاريخ ومبادئ بادن باول</p>
+        </div>
+      </a>
+      <a class="index-card" href="#proto-3" onclick="openProto(3)">
+        <div class="index-num">٣</div>
+        <div class="index-info">
+          <h4>القبول والاختيار</h4>
+          <p>كيف نختار الأشبال الجدد</p>
+        </div>
+      </a>
+      <a class="index-card" href="#proto-4" onclick="openProto(4)">
+        <div class="index-num">٤</div>
+        <div class="index-info">
+          <h4>الزي الكشفي البحري</h4>
+          <p>أنواع الزي ومتى يُلبس</p>
+        </div>
+      </a>
+      <a class="index-card" href="#proto-5" onclick="openProto(5)">
+        <div class="index-num">٥</div>
+        <div class="index-info">
+          <h4>المعسكرات الخارجية</h4>
+          <p>شروط الاشتراك والتعهدات</p>
+        </div>
+      </a>
+      <a class="index-card" href="#proto-6" onclick="openProto(6)">
+        <div class="index-num">٦</div>
+        <div class="index-info">
+          <h4>المكافأة والعقاب</h4>
+          <p>مبادئ التوجيه التربوي</p>
+        </div>
+      </a>
+      <a class="index-card" href="#proto-7" onclick="openProto(7)">
+        <div class="index-num">٧</div>
+        <div class="index-info">
+          <h4>واجبات القادة</h4>
+          <p>الهيكل القيادي والمسؤوليات</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Protocols -->
+<main class="proto-main">
+
+<!-- ============================================================
+     PROTOCOL 1 — MISSION
+============================================================ -->
+<article class="proto-card" id="proto-1">
+  <div class="proto-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="proto-num-circle">١</div>
+    <div class="proto-title-block">
+      <div class="eyebrow">PROTOCOL 01 · المهمة</div>
+      <h3>مهمة الكشافة الكنسية</h3>
+    </div>
+    <div class="proto-toggle">▼</div>
+  </div>
+  <div class="proto-body">
+    <div class="proto-body-inner">
+      <div class="proto-intro">
+        كشافة الكنيسة <strong>هدفها روحي في الأساس</strong> — وهو المساعدة في إيصال الفرد لملكوت السموات.
       </div>
 
-      <div class="card card-coral">
-        <div class="card-eyebrow">PROTOCOL 02</div>
-        <div class="card-title">بروتوكول الزي الكشفي</div>
-        <div class="card-desc">Class A للمناسبات الرسمية · Class B لمسابقات التفتيش · Class C للرحلات الحركية.</div>
-        <div class="card-cta">قريبًا · من 11uniform_protocol ←</div>
+      <div class="proto-section">
+        <h4>المهمة الأساسية</h4>
+        <p>تتمثل مهمة الكشافة في المساهمة في تربية الشباب، من خلال نظام القيم القائم على أساس وعد وقانون الكشافة، وذلك للمساعدة في بناء عالم أفضل، حيث يستطيع الأشخاص تحقيق ذواتهم كأفراد فاعلين يلعبون دوراً هاماً في بناء المجتمع.</p>
       </div>
 
-      <div class="card card-indigo">
-        <div class="card-eyebrow">PROTOCOL 03</div>
-        <div class="card-title">المكافأة والعقاب</div>
-        <div class="card-desc">الهدف من المكافأة التشجيع، والهدف من العقاب الضبط — كلاهما وسيلة لا غاية.</div>
-        <div class="card-cta">قريبًا · من 06Scout_Discipline ←</div>
+      <div class="proto-section">
+        <h4>الرؤية العالمية</h4>
+        <p>الكشافة هي حركة تعليمية شبابية، طوعية، غير سياسية — تمكّن الشباب من أن يكونوا مواطنين فاعلين يصنعون تغييراً إيجابياً في مجتمعاتهم وفي العالم، بناءً على قيم مشتركة.</p>
       </div>
 
-      <div class="card card-gold">
-        <div class="card-eyebrow">PROTOCOL 04</div>
-        <div class="card-title">المعسكرات الخارجية</div>
-        <div class="card-desc">شروط وضوابط الاشتراك في المعسكرات الخارجية بالاتحاد العام للكشافة.</div>
-        <div class="card-cta">قريبًا · من 10External_camps ←</div>
+      <div class="proto-section">
+        <h4>أهدافنا في مجموعة كنائس زايد</h4>
+        <ol>
+          <li><strong>روحياً:</strong> إعداد جيل قبطي أرثوذكسي ملتزم بتعاليم الكنيسة، يحب الصلاة والصوم والاعتراف والتناول.</li>
+          <li><strong>اجتماعياً:</strong> بناء شخصية قادرة على التفاعل الإيجابي مع المجتمع، تتحمّل المسؤولية وتساعد الآخرين.</li>
+          <li><strong>كشفياً:</strong> اكتساب مهارات بحرية متخصصة (ملاحة، شراع، تجديف، إنقاذ، عقد بحرية).</li>
+          <li><strong>قيادياً:</strong> تدريب الجوّالة ليكونوا قادة المستقبل في الكنيسة والمجتمع.</li>
+        </ol>
       </div>
 
-      <div class="card card-teal">
-        <div class="card-eyebrow">PROTOCOL 05</div>
-        <div class="card-title">واجبات القادة</div>
-        <div class="card-desc">دور قائد المجموعة، قائد القطاع، قائد الفريق، قائد الطليعة، والقائد العادي.</div>
-        <div class="card-cta">قريبًا · من 07Leaders_Duties ←</div>
-      </div>
-
-      <div class="card card-coral">
-        <div class="card-eyebrow">PROTOCOL 06</div>
-        <div class="card-title">القانون والوعد والصلاة</div>
-        <div class="card-desc">أساسيات الكشفي · من 01Scout_Basics + 00SMScout_Mission.</div>
-        <div class="card-cta">قريبًا ←</div>
+      <div class="highlight-box gold">
+        ⛵ <strong>طابعنا المميز:</strong> كشافة بحرية فقط · لا جوية ولا برية · يميّزنا بطابع مختلف ويفتح أمام أولادنا أبواب البحر بكل ما يحمله من تحديات ومتعة.
       </div>
     </div>
-  </section>
+  </div>
+</article>
 
-  <section class="section">
-    <div class="card" style="background: rgba(212, 167, 58, 0.08); border-color: rgba(212, 167, 58, 0.3); text-align: center;">
-      <h3 style="font-family: var(--font-accent); color: var(--gold-deep); margin-bottom: 8px;">📋 الخطوة القادمة</h3>
-      <p style="color: var(--ink-soft); font-size: 14px;">في الإصدار القادم، كل بروتوكول هيبقى صفحة كاملة، فيها النص الأصلي من ملفات مارمرقس + التعديلات الخاصة بكنائس زايد + إمكانية تحرير يدوي للقائد العام.</p>
+<!-- ============================================================
+     PROTOCOL 2 — SCOUT BASICS
+============================================================ -->
+<article class="proto-card" id="proto-2">
+  <div class="proto-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="proto-num-circle">٢</div>
+    <div class="proto-title-block">
+      <div class="eyebrow">PROTOCOL 02 · الأساسيات</div>
+      <h3>أساسيات الحركة الكشفية</h3>
     </div>
-  </section>
+    <div class="proto-toggle">▼</div>
+  </div>
+  <div class="proto-body">
+    <div class="proto-body-inner">
+      <div class="proto-intro">
+        تأسست الحركة الكشفية على يد <strong>اللورد بادن باول</strong> سنة <strong>١٩٠٧</strong>، كحركة شبابية تربوية بنيت من الأدنى للأعلى بهدف مشاركة وانخراط الشباب من جميع أنحاء العالم.
+      </div>
+
+      <div class="proto-section">
+        <h4>الإحصائيات العالمية</h4>
+        <ul>
+          <li>أكثر من <strong>١٦٠</strong> جمعية كشفية وطنية</li>
+          <li>أكثر من <strong>٤٠ مليون</strong> عضو حول العالم</li>
+          <li>أكثر من <strong>مليون</strong> مجموعة كشفية محلية</li>
+          <li><strong>٧ مليون</strong> متطوع يدعمون الأنشطة الوطنية</li>
+        </ul>
+      </div>
+
+      <div class="proto-section">
+        <h4>الوعد الكشفي</h4>
+        <div class="highlight-box teal">
+          أعد بشرفي أن أبذل جهدي في:<br>
+          <strong>١.</strong> أن أؤدي واجبي نحو الله ووطني.<br>
+          <strong>٢.</strong> أن أساعد الناس في كل وقت.<br>
+          <strong>٣.</strong> أن أعمل بقانون الكشاف.
+        </div>
+      </div>
+
+      <div class="proto-section">
+        <h4>قانون الكشاف العشرة</h4>
+        <ol>
+          <li>الكشاف يقول الصدق ولا يخالف عهده.</li>
+          <li>الكشاف نافع وأمين.</li>
+          <li>الكشاف صديق للناس وأخ لكل كشّاف.</li>
+          <li>الكشاف رحيم بالحيوان.</li>
+          <li>الكشاف مهذّب.</li>
+          <li>الكشاف مطيع لرؤسائه.</li>
+          <li>الكشاف باسم رضي يقابل الصعاب بابتسام.</li>
+          <li>الكشاف مقتصد.</li>
+          <li>الكشاف نظيف في قوله وعمله.</li>
+          <li>الكشاف يحب وطنه.</li>
+        </ol>
+      </div>
+
+      <div class="proto-section">
+        <h4>الأولويات الاستراتيجية</h4>
+        <ul>
+          <li><strong>مشاركة الشباب:</strong> منح الفرصة لتطوير المهارات والمعرفة لتمكينهم من القيام بدور فعال في الحركة الكشفية وفي مجتمعاتهم.</li>
+          <li><strong>الطرق التربوية:</strong> توفير برنامج يقدم بيئة تعلم غير رسمية تستهدف تعزيز قدرات الشباب لمواجهة تحديات المستقبل.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================
+     PROTOCOL 3 — ADMISSION
+============================================================ -->
+<article class="proto-card" id="proto-3">
+  <div class="proto-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="proto-num-circle">٣</div>
+    <div class="proto-title-block">
+      <div class="eyebrow">PROTOCOL 03 · القبول</div>
+      <h3>مسابقة اختيار الأشبال والزهرات الجدد</h3>
+    </div>
+    <div class="proto-toggle">▼</div>
+  </div>
+  <div class="proto-body">
+    <div class="proto-body-inner">
+      <div class="proto-intro">
+        المسابقة هي الطريقة العادلة للاختيار بين المتقدمين، حيث أن الكشافة لا تقدر أن تستوعب العدد كله. تتكون المسابقة من <strong>٣ مراحل: تحريري، شفوي، معسكر اختيار</strong>.
+      </div>
+
+      <div class="proto-section">
+        <h4>التنبيه وفتح باب التقديم</h4>
+        <ul>
+          <li>يتم التنبيه على ميعاد المسابقة قبلها بأربع مرات على الأقل في مدارس الأحد، للسن المحدد <strong>(الصف الثالث الابتدائي فقط)</strong>.</li>
+          <li>خادم يمر على كل الفصول كل مرة مع توزيع ورقة بميعاد المسابقة التحريري.</li>
+          <li>تحديد مكان تجمع بعد مدارس الأحد لتوزيع استمارة البيانات.</li>
+          <li>كل استمارة عليها كود مسلسل بخط اليد لمنع التصوير أو التبديل، مع كتابة الاسم والفصل والكود في ورقة خارجية.</li>
+        </ul>
+      </div>
+
+      <h4 style="font-family: var(--font-display); color: var(--coral-deep); margin: 24px 0 16px;">المراحل الثلاث</h4>
+
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">المرحلة الأولى</div>
+          <h5>📝 المسابقة التحريري</h5>
+          <p>ورقة بسيطة (وش وظهر) لتقبّل مستوى مقبول من التعلم: أسئلة من منهج الحساب · مدارس الأحد · معلومات عامة · إملاء.</p>
+          <div class="target">🎯 نجاح ٦٥ ولد و ٦٥ بنت أو ٨٥% من المتقدمين</div>
+        </div>
+        <div class="stage-card s2">
+          <div class="stage-num">المرحلة الثانية</div>
+          <h5>🗣️ المسابقة الشفوي</h5>
+          <p>لجان فردية للتقييم في: تعبيري · روحي · حواس وموسيقى · فنون · IQ وقوة ملاحظة وتخيل.</p>
+          <div class="target">🎯 نجاح ٥٠ ولد و ٥٠ بنت أو ٧٥%</div>
+        </div>
+        <div class="stage-card s3">
+          <div class="stage-num">المرحلة الثالثة</div>
+          <h5>⛺ معسكر الاختيار</h5>
+          <p>٣ أيام (يومان ولاد + يومان بنات). تقييم على: معايشة ٤٠% · كشفي ١٥% · حركي ١٥% · اجتماعي ٢٠% · سلوك ١٥%.</p>
+          <div class="target">🎯 نجاح ٣٠ ولد و ٣٠ بنت</div>
+        </div>
+      </div>
+
+      <div class="proto-section">
+        <h4>شروط الدخول العامة</h4>
+        <ul>
+          <li>مواظب على مدارس الأحد بنسبة تتعدى الـ <strong>٥٠%</strong>.</li>
+          <li><strong>أرثوذكسي · متعمَّد · في الصف الثالث الابتدائي.</strong></li>
+          <li>منتظم في كنائس زايد (الأنبا صموئيل أو البابا كيرلس).</li>
+        </ul>
+      </div>
+
+      <div class="proto-section">
+        <h4>أدوار الفرق</h4>
+        <table class="proto-table">
+          <thead>
+            <tr>
+              <th>الفريق</th>
+              <th>الدور</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>قادة المسابقة</strong></td>
+              <td>الإعداد + التقييم في كل المراحل</td>
+            </tr>
+            <tr>
+              <td><strong>قادة القطاع</strong></td>
+              <td>الحضور والتنظيم فقط (مش تقييم)</td>
+            </tr>
+            <tr>
+              <td><strong>قادة الفرق (٤)</strong></td>
+              <td>الإعداد مع قادة المسابقة + المقابلة الشخصية في المعسكر</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="proto-section">
+        <h4>الهدف من المعسكر</h4>
+        <div class="highlight-box teal">
+          المعسكر كله ألعاب ومسابقات ونزول حمام السباحة — <strong>الهدف هو أن كل المخدومين ينبسطوا حتى لو مش هيكملوا في الكشافة</strong>. يوجد مقابلة شخصية في المعسكر دورها تجميع الملاحظات عن الولد.
+        </div>
+      </div>
+
+      <div class="proto-section">
+        <h4>ملاحظات عامة</h4>
+        <ul>
+          <li>يتم أخذ موافقة <strong>أبونا راعي الخدمة</strong> بعد كل مرحلة.</li>
+          <li>إمضاء الأسقف في المرحلة النهائية.</li>
+          <li><strong>مراعاة السرية التامة</strong> خلال جميع مراحل المسابقة.</li>
+          <li>قائد المعسكر يكون <strong>غير</strong> قائد المسابقة.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================
+     PROTOCOL 4 — UNIFORM
+============================================================ -->
+<article class="proto-card" id="proto-4">
+  <div class="proto-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="proto-num-circle">٤</div>
+    <div class="proto-title-block">
+      <div class="eyebrow">PROTOCOL 04 · الزي</div>
+      <h3>بروتوكول الزي الكشفي البحري</h3>
+    </div>
+    <div class="proto-toggle">▼</div>
+  </div>
+  <div class="proto-body">
+    <div class="proto-body-inner">
+      <div class="proto-intro">
+        تتميز كشافة كنائسنا بزيها الكشفي البحري الموحّد، وبمستوى عالٍ من الالتزام في ارتدائه بصورة كاملة وصحيحة. يجب على كل القادة المساعدة بفاعلية لاستمرار هذا التميّز.
+      </div>
+
+      <div class="proto-section">
+        <h4>المسؤول عن الزي</h4>
+        <p>
+          المسؤول الأول عن الزي الكشفي هو <strong>قائد قطاع السكرتارية</strong> ويساعده <strong>مسؤول الزي الكشفي</strong>.
+        </p>
+      </div>
+
+      <div class="proto-section">
+        <h4>أنواع الزي الكشفي</h4>
+        <table class="proto-table">
+          <thead>
+            <tr>
+              <th>الفئة</th>
+              <th>الوصف</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="class-tag">CLASS A</span></td>
+              <td>الزي الكشفي الكامل للولاد والبنات: القميص + الشارات + المنديل + شراب + (بنطلون لقطاع المتقدم · شورت لباقي فرق الولاد · جيب لكل فرق البنات)</td>
+            </tr>
+            <tr>
+              <td><span class="class-tag b">CLASS B</span></td>
+              <td>التيشيرت الكشفي + المنديل</td>
+            </tr>
+            <tr>
+              <td><span class="class-tag c">CLASS C</span></td>
+              <td>ارتداء المنديل فقط</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="proto-section">
+        <h4>متى يُلبس كل زي</h4>
+        <table class="proto-table">
+          <thead>
+            <tr>
+              <th>الفئة</th>
+              <th>المناسبات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="class-tag">CLASS A</span></td>
+              <td>المناسبات الرسمية · مسابقات التفتيش · الحفلات · اللقاءات المشتركة</td>
+            </tr>
+            <tr>
+              <td><span class="class-tag b">CLASS B</span></td>
+              <td>مسابقات التفتيش · المشروعات الهامة التي تتطلب مظهراً موحداً</td>
+            </tr>
+            <tr>
+              <td><span class="class-tag c">CLASS C</span></td>
+              <td>الرحلات التي تحتاج حرية حركة وإظهار لمظهر كشفي (كرحلات السير والجري والدراجات)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="proto-section">
+        <h4>إرشادات عامة</h4>
+        <ol>
+          <li>يجوز للولاد ارتداء بنطلون بدلاً من شورت <strong>بعد موافقة قائد قطاع السكرتارية</strong>.</li>
+          <li>يجوز للبنات ارتداء بنطلون بدلاً من جيب <strong>بعد موافقة قائد قطاع السكرتارية</strong>.</li>
+          <li><strong>(CLASS B)</strong> لا يجوز استخدام التيشيرت كزي رياضي — التيشيرت زي رسمي للكشافة يجب عدم استخدامه لأي غرض آخر.</li>
+          <li>يجب إحضار الزي الكشفي <strong>(CLASS A & B)</strong> في جميع المعسكرات.</li>
+          <li>يجب موافقة قائد قطاع السكرتارية في حالة طلب أي استثناء.</li>
+        </ol>
+      </div>
+
+      <div class="highlight-box">
+        ⚓ <strong>طابع بحري:</strong> الزي الكشفي البحري يميّز مجموعتنا — منديل بحري بألوان مميزة، شعار الكنائس والمرسى، الأزرار الذهبية، والشارات المخصصة لكل قطاع.
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================
+     PROTOCOL 5 — EXTERNAL CAMPS
+============================================================ -->
+<article class="proto-card" id="proto-5">
+  <div class="proto-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="proto-num-circle">٥</div>
+    <div class="proto-title-block">
+      <div class="eyebrow">PROTOCOL 05 · المعسكرات</div>
+      <h3>لائحة وتعهد المعسكرات الخارجية</h3>
+    </div>
+    <div class="proto-toggle">▼</div>
+  </div>
+  <div class="proto-body">
+    <div class="proto-body-inner">
+      <div class="proto-intro">
+        يسر مجموعتنا الكشفية الاشتراك في المعسكرات والفاعليات المختلفة خارج مصر، وذلك لتنمية شبابنا في جميع النواحي عن طريق تعرّفهم على ثقافات وأنشطة مختلفة. ولتنظيم الاشتراك ووضع ضوابط، يجب على المتقدم الموافقة ومراعاة الآتي.
+      </div>
+
+      <div class="proto-section">
+        <h4>شروط الاشتراك</h4>
+        <ol>
+          <li><strong>الانتظام:</strong> أن يكون فرد مقيد بالكشافة ومنتظم تماماً في جميع الأنشطة والمعسكرات، وأن يذكّيه قائده المباشر. <em>وبالنسبة للقادة: يجب أن يكون مدرج اسمه في توزيع الخدمة ومنتظم بها، ويذكّيه قائد المجموعة.</em></li>
+
+          <li><strong>الأولوية:</strong> يُراعى في الاختيار أو التذكية كون المتقدم لم يلتحق بمعسكرات سابقة — فذلك يعطيه أولوية.</li>
+
+          <li><strong>التقرير:</strong> يجب على المشترك تقديم <strong>تقرير كامل بعد المعسكر</strong> يوضح فيه أنشطته خلال المعسكر وأوجه الاستفادة وكيفية نقل الخبرات داخل مجموعتنا. كما يُقدّم تقرير موثق للاتحاد بعد ٣ أشهر يوضح كيفية نقل خبراته فعلياً.</li>
+
+          <li><strong>التمثيل المشرّف:</strong> أن يمثّل المشترك مجموعتنا الكشفية تمثيلاً مشرفاً، من حيث الانضباط والمشاركة الفعالة.</li>
+
+          <li><strong>الالتزام بالتوقيت:</strong> لا يجوز للمتقدم:
+            <ul>
+              <li>الحصول على فيزا وعدم السفر.</li>
+              <li>السفر وعدم حضور المعسكر بالكامل.</li>
+              <li>السفر وعدم العودة مباشرة بعد المعسكر.</li>
+            </ul>
+          </li>
+
+          <li><strong>التعهد المالي:</strong> أن يتعهد بسداد كامل المصاريف المحددة من الاتحاد العام للكشافة، ومصاريف السفر والانتقالات والمصاريف الشخصية، وأي مصاريف أخرى تطلب لإتمام الاشتراك في موعدها.</li>
+
+          <li><strong>وديعة الصندوق:</strong> يقوم بسداد <strong>١٠،٠٠٠ جنيه مصري</strong> لصندوق الكشافة، وذلك لسداد أي مصاريف قد تطلب من الاتحاد في صورة اشتراكات أو غرامات. ويسترد باقي المبلغ بعد عودة المشترك لمصر في الموعد.</li>
+        </ol>
+      </div>
+
+      <div class="proto-section">
+        <h4>التعهد الرسمي</h4>
+        <div class="highlight-box gold">
+          <strong>أتعهّد أنا / ولي الأمر</strong> ـــــــــــــــــــــــــــــــــــــــــــ بتنفيذ كل البنود السابقة بخصوص الاشتراك بمعسكر ـــــــــــــــــــــــــــــــــــــــــــــــــ، وذلك في الفترة من / / ٢٠٢_ إلى / / ٢٠٢_، والقيام بـ ـــــــــــــــــــــــــــــــــــــــــــــ، وهذا إقرار مني بذلك.<br><br>
+          <strong>التواقيع المطلوبة:</strong><br>
+          ☐ توقيع المشترك بالمعسكر<br>
+          ☐ توقيع ولي الأمر<br>
+          ☐ توقيع قائد المجموعة<br>
+          ☐ توقيع الأب الكاهن
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================
+     PROTOCOL 6 — DISCIPLINE
+============================================================ -->
+<article class="proto-card" id="proto-6">
+  <div class="proto-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="proto-num-circle">٦</div>
+    <div class="proto-title-block">
+      <div class="eyebrow">PROTOCOL 06 · المكافأة والعقاب</div>
+      <h3>مبادئ المكافأة والعقاب</h3>
+    </div>
+    <div class="proto-toggle">▼</div>
+  </div>
+  <div class="proto-body">
+    <div class="proto-body-inner">
+      <div class="proto-intro">
+        الكشافة هي خدمة تربوية رعوية ذات أهداف روحية في الأساس. وفي خلال رحلة خدمتنا نتدرّج بطريقة التوجيه من مرحلة المكافآت والعقاب حتى نصل لمرحلة <strong>حب المبادئ السامية والرغبة في عمل الصواب</strong>.
+      </div>
+
+      <div class="proto-section">
+        <h4>المكافأة — مبادئها</h4>
+        <p>الهدف من المكافأة هو <strong>التشجيع والتحفيز على العمل الإيجابي بصورة مستمرة</strong>.</p>
+        <ol>
+          <li>يجب أن تكون مرتبطة بحدث واضح كمسابقة أو تحدّي، وقد تكون معلنة مسبقاً أو بشكل مفاجئ لتحفيز المخدومين على الالتزام الدائم.</li>
+          <li>يُراعى التدرج في المكافأة وتوسيع مساحة التميّز لإعطاء فرص للآخرين.</li>
+          <li>يجب أن تكون <strong>فورية</strong> وعدم التأخر الذي يؤدي لفقدان الهدف.</li>
+          <li>دائماً يُراعى إعطاء إرشاد شخصي لكل من لم يحصل على المكافأة لتوضيح السبب.</li>
+          <li>يجب أن تسير سياسة المكافأة بجانب سياسة العقاب — وفي جميع الأحوال نسعى للتقليل منهما تدريجياً حتى الوصول للمرحلة التي يقوم فيها المخدوم بعمل الصواب بغض النظر عن انتظاره المكافأة أو خوفه من العقاب.</li>
+        </ol>
+      </div>
+
+      <div class="proto-section">
+        <h4>المكافآت الرسمية الأساسية</h4>
+        <ol>
+          <li><strong>مثالي معسكر فريق</strong> — يُختار بناءً على أدائه ونموه طوال مدة المعسكر.</li>
+          <li><strong>مثالي ومثالية لمعسكر مجموعة</strong> — على مستوى المجموعة كاملة.</li>
+          <li><strong>مثالي ومثالية المجموعة للعام</strong> — أعلى تكريم سنوي.</li>
+          <li><strong>درع الفريق الفائز بالنادي الكشفي</strong> — على مستوى الطلائع.</li>
+        </ol>
+        <p>توجد مكافآت أخرى غير أساسية مثل: مسابقات المواهب · مسابقة كنز المجموعة · شارات الهوايات · وما يتناسب مع مناهج كل فريق على حدة.</p>
+      </div>
+
+      <div class="proto-section">
+        <h4>العقاب — الهدف منه</h4>
+        <p>الهدف من العقاب هو <strong>وسيلة لضبط الأمور حتى تعود للاتجاه الإيجابي</strong>. يوجد نوعان من العقابات بالمجموعة الكشفية:</p>
+
+        <h5>A. العقاب الكشفي أو الرياضي</h5>
+        <p>قد نضطر لهذا النوع في حالة المخالفات البسيطة في ذات الموقف في الاجتماعات والرحلات والمعسكرات. ولتنفيذها يجب مراعاة:</p>
+        <ul>
+          <li>أن يكون متناسباً مع المخالفة (لا إفراط ولا تفريط).</li>
+          <li>أن يُنفّذ في ذات الموقف وليس بعد فترة.</li>
+          <li>أن لا يكون مهيناً للمخدوم أمام الآخرين.</li>
+          <li>أن يُتبع بإرشاد شخصي لتوضيح السبب.</li>
+          <li>أن يُختار العقاب بشكل تربوي (تنظيف · تنظيم · مساعدة) لا انتقامي.</li>
+        </ul>
+
+        <h5>B. العقاب الإداري</h5>
+        <p>للمخالفات الأشد — يُتخذ بعد الرجوع لقائد القطاع وقائد المجموعة، ويمكن أن يصل لـ:</p>
+        <ul>
+          <li>الحرمان من نشاط معين (رحلة، مسابقة).</li>
+          <li>الحرمان من معسكر كامل.</li>
+          <li>الإيقاف المؤقت عن الكشافة.</li>
+          <li>في الحالات النادرة والشديدة: الفصل النهائي — وذلك بعد الرجوع للأب الكاهن.</li>
+        </ul>
+      </div>
+
+      <div class="highlight-box teal">
+        🎯 <strong>الهدف النهائي:</strong> ليس العقاب أو المكافأة في حد ذاتهما — بل الوصول للمرحلة التي يقوم فيها المخدوم بعمل الصواب لأنه <strong>يحب الصواب</strong>، لا خوفاً من العقاب ولا انتظاراً للمكافأة.
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================
+     PROTOCOL 7 — LEADERS DUTIES
+============================================================ -->
+<article class="proto-card" id="proto-7">
+  <div class="proto-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="proto-num-circle">٧</div>
+    <div class="proto-title-block">
+      <div class="eyebrow">PROTOCOL 07 · القيادة</div>
+      <h3>متطلبات ومهام القادة والقائدات</h3>
+    </div>
+    <div class="proto-toggle">▼</div>
+  </div>
+  <div class="proto-body">
+    <div class="proto-body-inner">
+      <div class="proto-intro">
+        الهيكل القيادي للمجموعة الكشفية يضمن وضوح المسؤوليات وحسن سير الخدمة. كل مستوى له واجبات محددة، وكل قائد يرفع تقاريره لمن هو أعلى منه.
+      </div>
+
+      <!-- LEVEL 1: Scout Leader (General) -->
+      <div class="duty-card">
+        <div class="duty-card-header">
+          <h5>🟣 قائد الكشافة (القائد العام)</h5>
+          <div class="reports-to">يرفع تقاريره لـ: أمين الخدمة (الأب الكاهن)</div>
+        </div>
+        <p style="font-size: 13px; color: var(--ink-soft); margin-bottom: 12px;">
+          هو أعلى مرتبة في التسلسل القيادي، يقدّم تقاريره لكهنة الكنيسة المسؤولين عن النشاط مباشرة.
+        </p>
+        <div class="duties-list">
+          <ul>
+            <li>هو من <strong>يضع الرؤية العامة</strong> للخدمة بمساعدة مساعديه وقادة مجلس الصخرة.</li>
+            <li>المسؤول الأول والأخير عن <strong>توزيع الخدمة</strong> لكل المستويات، وله الحق أن يستشير قادة المجموعات وقادة القطاعات العرضية والطولية والفرق ومساعديه.</li>
+            <li>هو <strong>الأب لكل القادة</strong> — يقوم بإرشاد كل الخدام والخادمات لما هو الصالح للخدمة وخلاص نفوسهم.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- LEVEL 2: Deputy -->
+      <div class="duty-card deputy">
+        <div class="duty-card-header">
+          <h5>🩷 نائب القائد العام (مساعد القائد)</h5>
+          <div class="reports-to">يرفع تقاريره لـ: القائد العام</div>
+        </div>
+        <p style="font-size: 13px; color: var(--ink-soft); margin-bottom: 12px;">
+          هو عين القائد العام وذراعه المساعد التي تتابع تنفيذ المهام المختلفة وسير الخدمة عموماً.
+        </p>
+        <div class="duties-list">
+          <ul>
+            <li>يحلّ محل القائد العام في التوجيه للخدام والخادمات.</li>
+            <li>له الحق في <strong>اتخاذ بعض القرارات</strong> عدا المرتبطة بتعيين أو فصل الخدام.</li>
+            <li>تكون قراراته بعد الرجوع لقائد المجموعة إذا سمح الوقت لذلك.</li>
+            <li>يتابع تنفيذ المهام المختلفة وسير الخدمة عموماً.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- LEVEL 3: Group Leader -->
+      <div class="duty-card group">
+        <div class="duty-card-header">
+          <h5>🟢 قائد المجموعة الكشفية</h5>
+          <div class="reports-to">يرفع تقاريره لـ: القائد العام</div>
+        </div>
+        <p style="font-size: 13px; color: var(--ink-soft); margin-bottom: 12px;">
+          المسؤول عن كل أنشطة مجموعة كشفية بعينها، يقدّم تقاريره لقائد الكشافة العام.
+        </p>
+        <div class="duties-list">
+          <ul>
+            <li>المسؤول عن الخدمة بمجموعته، <strong>أول من يُسأل عن أي تقصير</strong>.</li>
+            <li>يضع فلسفة عامة للمجموعة وخطط تفصيلية تتماشى مع رؤية القائد العام.</li>
+            <li>يتابع الخدام والخادمات طوال العام مباشرة أو عن طريق التقارير الدورية، ويوجّههم كلما استدعى الأمر.</li>
+            <li>يقوم باجتماعات دورية ومتابعة دقيقة لقادة القطاعات العرضية.</li>
+            <li>يحافظ على تطور المجموعة وتنمية الخدام والمخدومين.</li>
+            <li>في حالة أي خلاف بين القيادات المختلفة — يقوم <strong>بدور الوساطة وتقريب وجهات النظر</strong>، وله الحق أن يفصل في هذا الخلاف.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- LEVEL 4: Sector Leaders -->
+      <div class="duty-card sector">
+        <div class="duty-card-header">
+          <h5>🟡 قائد القطاع (للمتقدم/المبتدئ/الأشبال)</h5>
+          <div class="reports-to">يرفع تقاريره لـ: قائد المجموعة</div>
+        </div>
+        <p style="font-size: 13px; color: var(--ink-soft); margin-bottom: 12px;">
+          مسؤول عن قطاع بعينه (متقدم أو مبتدئ أو أشبال) — ولاد أو بنات. كل قطاع له قائد ولد وقائدة بنات.
+        </p>
+        <div class="duties-list">
+          <ul>
+            <li>وضع <strong>الخطة السنوية للقطاع</strong> (السيزون كاملاً) بمساعدة فريق القادة المساعدين.</li>
+            <li>متابعة كل فرق القطاع وقادتها.</li>
+            <li>الإشراف المباشر على المعسكرات والاجتماعات الأسبوعية.</li>
+            <li>متابعة تطور المخدومين روحياً وكشفياً.</li>
+            <li>تطبيق سياسة المكافأة والعقاب بشكل عادل.</li>
+            <li>الحضور الأسبوعي المنتظم وتقييم القادة المساعدين.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight-box gold">
+        🤝 <strong>اللجان العرضية:</strong> تخدم كل القطاعات — لجنة اللوجيستيات (المعسكرات والمعدات) ولجنة الإدارة والتعليم (المناهج وتدريب القادة). أعضاؤها يُختارون من القطاعات المختلفة، ويعملون بشكل مستقل عن قطاعاتهم.
+      </div>
+
+      <div class="highlight-box teal">
+        ⚓ <strong>الجوّالة:</strong> ١٨ جوال تحت التدريب — لهم جدول تدريب مستقل، ويساعدون في تنفيذ جدول الاجتماعات تحت إشراف قادة القطاعات. هم <strong>قادة المستقبل</strong>.
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- Attribution -->
+<div class="attribution">
+  <strong>المصدر والاقتباس:</strong><br>
+  هذه البروتوكولات مُكيَّفة من اللوائح المعتمدة لكشافة كنيسة مارمرقص بشبرا (Saint Mark Scout) — أقدم وأعرق المجموعات الكشفية في الكنيسة القبطية. تم تكييفها لتناسب الطبيعة <strong>البحرية</strong> والعدد والتوزيع الجغرافي لمجموعتنا في زايد.
 </div>
+
+</main>
+
 <div id="footer-mount"></div>
+
 <script src="assets/zs.js"></script>
 <script>
   ZS.requireAuth();
   ZS.mountChrome('protocols');
+
+  function openProto(num) {
+    setTimeout(() => {
+      const card = document.getElementById('proto-' + num);
+      if (card && !card.classList.contains('open')) {
+        card.classList.add('open');
+      }
+    }, 100);
+  }
+
+  // Open protocol if URL has hash
+  if (window.location.hash) {
+    const match = window.location.hash.match(/proto-(\d+)/);
+    if (match) openProto(parseInt(match[1]));
+  }
 </script>
+
 </body>
 </html>

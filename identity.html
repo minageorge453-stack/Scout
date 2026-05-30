@@ -9,207 +9,456 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Reem+Kufi:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/shared.css">
 <style>
-  .pillar-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 22px;
-  }
-  .pillar {
-    background: #fff;
-    border-radius: 20px;
-    padding: 32px 28px;
-    border: 1px solid rgba(45, 138, 150, 0.1);
+  .id-hero {
+    background: linear-gradient(160deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+    color: #fff;
+    padding: 72px 24px 56px;
+    text-align: center;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s;
   }
-  .pillar:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 36px var(--shadow-md);
-  }
-  .pillar-num {
+  .id-hero::before {
+    content: '';
     position: absolute;
-    top: 14px;
-    left: 18px;
-    font-family: var(--font-latin);
-    font-style: italic;
-    font-size: 64px;
-    color: rgba(45, 138, 150, 0.1);
-    font-weight: 600;
-    line-height: 1;
+    top: -100px; right: -100px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(212,167,58,0.2) 0%, transparent 70%);
+    border-radius: 50%;
   }
-  .pillar-icon {
-    font-size: 38px;
-    margin-bottom: 14px;
-    line-height: 1;
+  .id-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -120px; left: -120px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(45,138,150,0.25) 0%, transparent 70%);
+    border-radius: 50%;
   }
-  .pillar h3 {
+  .id-hero-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+  .id-hero .eyebrow {
     font-family: var(--font-accent);
-    font-size: 20px;
-    color: var(--indigo);
-    margin-bottom: 10px;
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    margin-bottom: 14px;
   }
-  .pillar p {
-    font-size: 14px;
-    color: var(--ink-soft);
-    line-height: 1.75;
+  .id-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 7vw, 72px);
+    margin: 0 0 14px;
+    line-height: 1.1;
+  }
+  .id-hero .lead {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(18px, 2.5vw, 22px);
+    color: var(--gold);
+    max-width: 700px;
+    margin: 0 auto 20px;
+    line-height: 1.6;
+  }
+  .id-hero .marine-badge {
+    display: inline-block;
+    background: rgba(212,167,58,0.15);
+    border: 1px solid rgba(212,167,58,0.5);
+    color: var(--gold);
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-family: var(--font-accent);
+    font-size: 13px;
+    letter-spacing: 3px;
   }
 
+  .section { padding: 64px 24px; max-width: 1100px; margin: 0 auto; }
+  .section-alt { background: var(--paper-warm); padding: 64px 24px; }
+  .section-alt > .inner { max-width: 1100px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 44px; }
+  .section-eyebrow {
+    font-family: var(--font-accent);
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--coral-deep);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 5vw, 44px);
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.15;
+  }
+  .section-sub {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-top: 14px;
+    line-height: 1.85;
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 800px) { .mv-grid { grid-template-columns: 1fr; } }
   .mv-block {
-    background: linear-gradient(135deg, #fff 0%, var(--teal-fade) 100%);
-    border-radius: 24px;
-    padding: 40px 36px;
-    margin-bottom: 24px;
-    border: 1px solid rgba(45, 138, 150, 0.15);
+    background: #fff;
+    border-radius: 18px;
+    padding: 38px 32px;
+    border: 1px solid rgba(45,138,150,0.12);
+    box-shadow: 0 4px 14px var(--shadow);
     position: relative;
     overflow: hidden;
   }
   .mv-block::before {
     content: '';
     position: absolute;
-    top: -40px; right: -40px;
-    width: 180px; height: 180px;
-    background: radial-gradient(circle, rgba(255, 107, 91, 0.08), transparent 70%);
-    border-radius: 50%;
+    top: 0; right: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--teal) 0%, var(--coral) 100%);
   }
   .mv-eyebrow {
-    font-family: var(--font-modern);
+    font-family: var(--font-accent);
     font-size: 11px;
-    letter-spacing: 3.5px;
+    letter-spacing: 4px;
     color: var(--coral-deep);
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    position: relative;
+    margin-bottom: 16px;
   }
   .mv-block h2 {
     font-family: var(--font-display);
-    font-size: 30px;
-    color: var(--indigo);
-    margin-bottom: 16px;
-    line-height: 1.4;
-    position: relative;
-  }
-  .mv-block p {
-    font-size: 16px;
-    color: var(--ink-soft);
-    line-height: 1.9;
-    position: relative;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.5;
+    margin: 0;
   }
 
-  .stat-strip {
+  .big-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 16px;
-    margin: 32px 0;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 36px;
   }
-  .stat-strip-item {
+  @media (max-width: 800px) { .big-stats { grid-template-columns: repeat(2, 1fr); } }
+  .stat-card {
     background: #fff;
-    border-radius: 14px;
-    padding: 22px 18px;
+    border-radius: 16px;
+    padding: 28px 22px;
     text-align: center;
-    border: 1px solid rgba(45, 138, 150, 0.1);
+    border-top: 3px solid var(--teal);
+    box-shadow: 0 4px 14px var(--shadow);
   }
-  .stat-strip-num {
+  .stat-card.coral { border-top-color: var(--coral); }
+  .stat-card.gold { border-top-color: var(--gold); }
+  .stat-card.indigo { border-top-color: var(--indigo); }
+  .stat-num {
     font-family: var(--font-display);
-    font-size: 38px;
+    font-size: 52px;
     font-weight: 700;
-    color: var(--coral-deep);
+    color: var(--teal-deep);
     line-height: 1;
     margin-bottom: 6px;
   }
-  .stat-strip-label {
-    font-family: var(--font-modern);
-    font-size: 11px;
-    letter-spacing: 2px;
+  .stat-card.coral .stat-num { color: var(--coral-deep); }
+  .stat-card.gold .stat-num { color: #b8860b; }
+  .stat-card.indigo .stat-num { color: var(--indigo); }
+  .stat-label {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .stat-sub { font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
+
+  .quick-facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 30px;
+  }
+  @media (max-width: 700px) { .quick-facts { grid-template-columns: 1fr; } }
+  .quick-fact {
+    background: #fff;
+    padding: 18px 22px;
+    border-radius: 12px;
+    border-right: 4px solid var(--teal);
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 14px;
+    align-items: center;
+  }
+  .quick-fact .label {
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--coral-deep);
+  }
+  .quick-fact .value {
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .pillar {
+    background: #fff;
+    padding: 24px 18px;
+    border-radius: 14px;
+    text-align: center;
+    border-top: 3px solid var(--teal);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .pillar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px var(--shadow-md);
+  }
+  .pillar-num {
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--coral-deep);
+    margin-bottom: 8px;
+  }
+  .pillar-icon { font-size: 36px; margin-bottom: 8px; line-height: 1; }
+  .pillar h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .pillar p {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .hierarchy-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .hier-level {
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px 28px;
+    text-align: center;
+    border-top: 3px solid var(--indigo);
+    box-shadow: 0 4px 14px var(--shadow);
+    max-width: 600px;
+    width: 100%;
+  }
+  .hier-level.l1 { border-top-color: #8b5cf6; }
+  .hier-level.l2 { border-top-color: var(--coral); max-width: 500px; }
+  .hier-level.l3 { max-width: 100%; }
+  .hier-level .role {
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--coral-deep);
+    margin-bottom: 6px;
+  }
+  .hier-level h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .hier-level p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.7;
+  }
+  .hier-arrow { color: var(--teal); font-size: 24px; line-height: 1; }
+  .hier-3-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    width: 100%;
+  }
+  @media (max-width: 700px) { .hier-3-cols { grid-template-columns: 1fr; } }
+  .hier-3-cols .hier-level { padding: 18px 16px; max-width: 100%; }
+  .hier-3-cols .hier-level h3 { font-size: 17px; }
+
+  .committees {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  @media (max-width: 700px) { .committees { grid-template-columns: 1fr; } }
+  .committee {
+    background: var(--teal-fade);
+    padding: 22px 24px;
+    border-radius: 12px;
+    border-right: 4px solid var(--teal);
+  }
+  .committee .eyebrow {
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 3px;
     color: var(--teal-deep);
-    font-weight: 600;
-    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .committee h4 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .committee p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .churches-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 800px) { .churches-grid { grid-template-columns: 1fr; } }
+  .church-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 28px;
+    text-align: center;
+    border: 1px solid rgba(45,138,150,0.12);
+    box-shadow: 0 4px 14px var(--shadow);
+  }
+  .church-card.primary {
+    border: 2px solid var(--gold);
+    background: linear-gradient(135deg, #fff 0%, #fffbf2 100%);
+  }
+  .church-card img {
+    height: 110px;
+    width: auto;
+    max-width: 130px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 6px 16px rgba(15,20,25,0.12));
+  }
+  .church-card h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--ink);
+    margin: 0 0 8px;
+    line-height: 1.35;
+  }
+  .church-card .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+  }
+  .church-card p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    margin: 0;
+  }
+  .future-note {
+    text-align: center;
+    margin-top: 24px;
+    padding: 18px 24px;
+    background: var(--paper-warm);
+    border-radius: 12px;
+    border: 1px dashed var(--coral);
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.75;
   }
 
   .timeline {
     position: relative;
-    padding: 30px 0;
-    max-width: 720px;
-    margin: 0 auto;
+    padding-right: 30px;
   }
   .timeline::before {
     content: '';
     position: absolute;
-    top: 0; bottom: 0;
-    right: 24px;
+    right: 8px;
+    top: 8px;
+    bottom: 8px;
     width: 2px;
     background: linear-gradient(180deg, var(--teal) 0%, var(--coral) 100%);
   }
-  .timeline-item {
-    position: relative;
-    padding-right: 60px;
-    margin-bottom: 28px;
-  }
+  .timeline-item { position: relative; margin-bottom: 28px; }
   .timeline-item::before {
     content: '';
     position: absolute;
-    right: 18px;
-    top: 8px;
-    width: 14px; height: 14px;
+    right: -27px;
+    top: 14px;
+    width: 14px;
+    height: 14px;
     background: #fff;
-    border: 3px solid var(--teal);
+    border: 3px solid var(--coral);
     border-radius: 50%;
   }
   .timeline-year {
-    font-family: var(--font-modern);
+    font-family: var(--font-accent);
     font-size: 11px;
-    letter-spacing: 2.5px;
+    letter-spacing: 3px;
     color: var(--coral-deep);
-    font-weight: 700;
-    text-transform: uppercase;
     margin-bottom: 4px;
   }
   .timeline-title {
-    font-family: var(--font-accent);
-    font-size: 18px;
-    color: var(--indigo);
-    margin-bottom: 6px;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--ink);
+    margin: 0 0 6px;
   }
   .timeline-text {
     font-size: 14px;
     color: var(--ink-soft);
+    line-height: 1.85;
+    background: #fff;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border-right: 3px solid var(--teal);
   }
 
-  .verse-banner {
+  .promise-banner {
     background: linear-gradient(135deg, var(--indigo) 0%, var(--indigo-deep) 100%);
     color: #fff;
-    padding: 50px 36px;
-    border-radius: 24px;
+    border-radius: 20px;
+    padding: 48px 36px;
     text-align: center;
-    margin: 48px 0;
+    margin: 0 auto;
+    max-width: 800px;
     position: relative;
     overflow: hidden;
   }
-  .verse-banner::before, .verse-banner::after {
+  .promise-banner::before {
     content: '"';
-    font-family: var(--font-display);
-    font-size: 120px;
-    color: rgba(255, 107, 91, 0.18);
     position: absolute;
-    line-height: 0.8;
-  }
-  .verse-banner::before { top: 24px; right: 36px; }
-  .verse-banner::after { bottom: 60px; left: 36px; transform: rotate(180deg); }
-  .verse-banner-text {
+    top: 4px; right: 24px;
     font-family: var(--font-display);
-    font-size: 26px;
-    line-height: 1.6;
-    margin-bottom: 12px;
-    position: relative;
+    font-size: 100px;
+    color: var(--gold);
+    opacity: 0.3;
+    line-height: 1;
   }
-  .verse-banner-ref {
-    font-family: var(--font-modern);
+  .promise-banner-text {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 3vw, 28px);
+    line-height: 1.7;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 2;
+  }
+  .promise-banner-ref {
+    font-family: var(--font-accent);
     font-size: 12px;
-    letter-spacing: 3.5px;
-    color: var(--coral-light);
-    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
   }
 </style>
 </head>
@@ -217,161 +466,277 @@
 
 <div id="topnav-mount"></div>
 
-<div class="page-wrap">
-
-  <div class="page-hero">
-    <div class="page-hero-eyebrow">IDENTITY · من نحن</div>
+<header class="id-hero">
+  <div class="id-hero-inner">
+    <div class="eyebrow">IDENTITY · من نحن</div>
     <h1>كشافة كنائس زايد</h1>
-    <p>مجموعة كشفية بحرية، خرجت من رحم كنائس مدينة الشيخ زايد قبل خمس سنوات، لتُكوِّن شبابًا نقيًا روحيًا، نقيًا أخلاقيًا، نقيًا فكريًا — يخدم كنيسته ووطنه.</p>
-    <div class="verse">⛵ كشافة بحرية فقط · لا جوية ولا برية</div>
+    <p class="lead">مجموعة كشفية بحرية أرثوذكسية · تأسست في يوليو ٢٠٢٢</p>
+    <div class="marine-badge">⛵ MARINE SCOUTS ONLY — كشافة بحرية فقط</div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">MISSION & VISION</div>
+    <h2 class="section-title">رسالتنا ورؤيتنا</h2>
   </div>
 
-  <!-- Mission, Vision -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-eyebrow">MISSION & VISION</div>
-      <h2 class="section-title">رسالتنا ورؤيتنا</h2>
-    </div>
-
+  <div class="mv-grid">
     <div class="mv-block">
       <div class="mv-eyebrow">OUR MISSION · رسالتنا</div>
-      <h2>أن نُساعد البنين والبنات ليصبحوا قادة لتطوير أنفسهم — أشخاصًا ملتزمين، مسؤولين، معتمدين على ذواتهم، داعمين لغيرهم.</h2>
-      <p>على مثال المسيح الذي «كان يصنع ويعلّم» (أعمال ١ : ١)، نُدرِّب شبابنا على القدوة قبل الكلام، وعلى المسؤولية قبل المُطالبة بالحقوق.</p>
+      <h2>نُعدّ جيلاً قبطياً واعياً، ملتزماً بمسيحه، مسؤولاً عن ذاته ومجتمعه، يبحر في الحياة بثبات الإيمان ومهارة الكشّاف.</h2>
     </div>
 
     <div class="mv-block" style="background: linear-gradient(135deg, #fff 0%, rgba(255, 107, 91, 0.06) 100%);">
       <div class="mv-eyebrow">OUR VISION · رؤيتنا</div>
       <h2>جيلٌ بحريٌّ، يقرأ بوصلة الإيمان قبل بوصلة الاتجاه — لا تُربكه الأمواج لأن مرساته في الصخرة.</h2>
-      <p>نسعى لبناء قطاعات كشفية تُكمِّل دور الكنيسة في تربية النفس، تربية العقل، تربية الجسد، تربية الروح — فلا يتربى الواحد منا في زاوية، بل في كل الزوايا.</p>
     </div>
-  </section>
-
-  <!-- 6 Pillars (the curriculum axes) -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-eyebrow">SIX PILLARS · المحاور الستة</div>
-      <h2 class="section-title">المحاور التربوية الست</h2>
-      <p class="section-sub">كل قطاع، في كل سنة، يبني المخدوم على هذه المحاور الستة معًا — لا يطغى محور على آخر.</p>
-    </div>
-
-    <div class="pillar-grid">
-      <div class="pillar">
-        <div class="pillar-num">01</div>
-        <div class="pillar-icon">⚓</div>
-        <h3>كشفي</h3>
-        <p>القانون والوعد، التمام والصفا، العقد والشفرات، الإسعافات الأولية، تخطيط المعسكرات — كل ما يبني الكشفي ككشفي.</p>
-      </div>
-
-      <div class="pillar">
-        <div class="pillar-num">02</div>
-        <div class="pillar-icon">⛵</div>
-        <h3>إبحار</h3>
-        <p>أنواع المراكب، الإبحار الشراعي، قراءة الخرائط الملاحية، قياس الأعماق، الموانئ، الغطس — هويتنا البحرية.</p>
-      </div>
-
-      <div class="pillar">
-        <div class="pillar-num">03</div>
-        <div class="pillar-icon">🤝</div>
-        <h3>اجتماعي</h3>
-        <p>روح الفريق، فن القيادة، ثقافة الاختلاف، التعامل مع الجنس الآخر، الثقافة الجنسية، الزواج المسيحي، الخدمة العامة.</p>
-      </div>
-
-      <div class="pillar">
-        <div class="pillar-num">04</div>
-        <div class="pillar-icon">💪</div>
-        <h3>بدني</h3>
-        <p>اللياقة، السباحة وأنواعها، الإنقاذ، التزحلق على الماء، رحلات المشي الطويلة، كرة الماء، الغطس.</p>
-      </div>
-
-      <div class="pillar">
-        <div class="pillar-num">05</div>
-        <div class="pillar-icon">🎨</div>
-        <h3>ثقافي</h3>
-        <p>التصوير، الموسيقى الكلاسيكية، التاريخ القبطي، السياسة المحلية والعالمية، الفن، إعادة التدوير، البيئة البحرية.</p>
-      </div>
-
-      <div class="pillar">
-        <div class="pillar-num">06</div>
-        <div class="pillar-icon">✝</div>
-        <h3>روحي</h3>
-        <p>سيرة قديس السنة، الصلاة بالأجبية، قراءة الكتاب المقدس، حياة التوبة، العلاقة الشخصية مع الله، التأمل الأسبوعي.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Verse banner -->
-  <div class="verse-banner">
-    <div class="verse-banner-text">
-      الكشّاف يخدم الله ووطنه،<br>
-      يساعد الآخرين في كل وقت،<br>
-      ويُطيع قانون الكشاف.
-    </div>
-    <div class="verse-banner-ref">SCOUT PROMISE · الوعد الكشفي</div>
   </div>
+</section>
 
-  <!-- Numbers / Stats -->
-  <section class="section">
+<section class="section-alt">
+  <div class="inner">
     <div class="section-header">
       <div class="section-eyebrow">BY THE NUMBERS · بالأرقام</div>
-      <h2 class="section-title">رحلة خمس سنوات</h2>
+      <h2 class="section-title">المجموعة في ٢٠٢٦</h2>
+      <p class="section-sub">صورة سريعة عن المجموعة الكشفية لكنائس زايد · تأسست في يوليو ٢٠٢٢</p>
     </div>
 
-    <div class="stat-strip">
-      <div class="stat-strip-item">
-        <div class="stat-strip-num">5</div>
-        <div class="stat-strip-label">سنوات خدمة</div>
+    <div class="big-stats">
+      <div class="stat-card coral">
+        <div class="stat-num">٢٥٠</div>
+        <div class="stat-label">إجمالي الأفراد</div>
+        <div class="stat-sub">١٤٠ بنت · ١١٠ ولد</div>
       </div>
-      <div class="stat-strip-item">
-        <div class="stat-strip-num">3</div>
-        <div class="stat-strip-label">قطاعات كشفية</div>
+      <div class="stat-card">
+        <div class="stat-num">٢٠</div>
+        <div class="stat-label">قائد وقائدة</div>
+        <div class="stat-sub">+ ١٨ جوال تحت التدريب</div>
       </div>
-      <div class="stat-strip-item">
-        <div class="stat-strip-num">6</div>
-        <div class="stat-strip-label">محاور تربوية</div>
+      <div class="stat-card gold">
+        <div class="stat-num">٣</div>
+        <div class="stat-label">قطاعات كشفية</div>
+        <div class="stat-sub">أشبال · مبتدئ · متقدم</div>
       </div>
-      <div class="stat-strip-item">
-        <div class="stat-strip-num">∞</div>
-        <div class="stat-strip-label">رؤية للمستقبل</div>
+      <div class="stat-card indigo">
+        <div class="stat-num">٢</div>
+        <div class="stat-label">كنائس تخدم</div>
+        <div class="stat-sub">قابلة للتوسع</div>
       </div>
     </div>
-  </section>
 
-  <!-- Timeline (placeholder for user to fill in real milestones) -->
-  <section class="section">
+    <div class="quick-facts">
+      <div class="quick-fact">
+        <div class="label">التأسيس</div>
+        <div class="value">يوليو ٢٠٢٢</div>
+      </div>
+      <div class="quick-fact">
+        <div class="label">يوم الاجتماع</div>
+        <div class="value">السبت · ١١ ص → ٢ م</div>
+      </div>
+      <div class="quick-fact">
+        <div class="label">مدة الاجتماع</div>
+        <div class="value">٣ ساعات أسبوعياً</div>
+      </div>
+      <div class="quick-fact">
+        <div class="label">مقر الاجتماعات</div>
+        <div class="value">كنيسة العذراء والأنبا صموئيل · زايد</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">OUR CHURCHES · كنائسنا</div>
+    <h2 class="section-title">الكنائس اللي بنخدم منها</h2>
+    <p class="section-sub">المجموعة تخدم أبناء كنيستين، وكل الاجتماعات في كنيسة الأنبا صموئيل لأنها تتسع للعدد</p>
+  </div>
+
+  <div class="churches-grid">
+    <div class="church-card primary">
+      <img src="assets/logos/logo_anba_samuel.webp" alt="كنيسة العذراء والأنبا صموئيل">
+      <h3>كنيسة العذراء<br>والأنبا صموئيل المعترف</h3>
+      <p>المقر الرئيسي لاجتماعات المجموعة · مدينة زايد</p>
+      <div class="badge">المقر · زايد</div>
+    </div>
+    <div class="church-card">
+      <img src="assets/logos/logo_pope_kyrillos.webp" alt="كنيسة العذراء والبابا كيرلس السادس">
+      <h3>كنيسة العذراء<br>والبابا كيرلس السادس</h3>
+      <p>الكنيسة الثانية اللي يخدم منها أفراد المجموعة</p>
+    </div>
+  </div>
+
+  <div class="future-note">
+    💡 المجموعة مستعدّة لاستقبال أبناء كنائس أخرى في زايد مستقبلاً — العدد قابل للتوسع
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="inner">
+    <div class="section-header">
+      <div class="section-eyebrow">LEADERSHIP · هيكل القيادة</div>
+      <h2 class="section-title">من فوق لتحت</h2>
+      <p class="section-sub">القيادة الروحية والإدارية للمجموعة · بناء هرمي يضمن وضوح المسؤوليات</p>
+    </div>
+
+    <div class="hierarchy-wrap">
+      <div class="hier-level l1">
+        <div class="role">LEVEL 1 · القمة</div>
+        <h3>أب كاهن + قائد عام</h3>
+        <p>القيادة الروحية والإدارية العليا للمجموعة</p>
+      </div>
+
+      <div class="hier-arrow">↓</div>
+
+      <div class="hier-level l2">
+        <div class="role">LEVEL 2 · الإدارة التنفيذية</div>
+        <h3>نائب القائد العام</h3>
+        <p>إدارة تنفيذية · إشراف على القطاعات · تنسيق اللجان · بديل القائد العام</p>
+      </div>
+
+      <div class="hier-arrow">↓</div>
+
+      <div class="hier-level l3">
+        <div class="role">LEVEL 3 · القطاعات الثلاثة</div>
+        <h3>قادة القطاعات</h3>
+        <p style="margin-bottom: 18px;">لكل قطاع: قائد ولد + قائدة بنات + ٢ مساعدين + ٢ منسقين إداريين + باقي القادة</p>
+
+        <div class="hier-3-cols">
+          <div class="hier-level" style="border-top-color: #d4a73a; padding: 16px;">
+            <h3 style="font-size: 16px; margin: 0;">قطاع الأشبال</h3>
+            <p style="font-size: 12px; margin-top: 4px;">٣-٥ ابتدائي</p>
+          </div>
+          <div class="hier-level" style="border-top-color: #8b1e3f; padding: 16px;">
+            <h3 style="font-size: 16px; margin: 0;">قطاع المبتدئ</h3>
+            <p style="font-size: 12px; margin-top: 4px;">٦ ابت + ١، ٢ إع</p>
+          </div>
+          <div class="hier-level" style="border-top-color: #2d8a96; padding: 16px;">
+            <h3 style="font-size: 16px; margin: 0;">قطاع المتقدم</h3>
+            <p style="font-size: 12px; margin-top: 4px;">٣ إع + ١، ٢ ث</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="committees">
+      <div class="committee">
+        <div class="eyebrow">CROSS-COMMITTEE · لجنة عرضية</div>
+        <h4>📦 لجنة اللوجيستيات</h4>
+        <p>تخدم كل القطاعات · المعسكرات · النقل · المعدات · الإمدادات</p>
+      </div>
+      <div class="committee">
+        <div class="eyebrow">CROSS-COMMITTEE · لجنة عرضية</div>
+        <h4>📚 لجنة الإدارة والتعليم</h4>
+        <p>التخطيط الأكاديمي · المناهج · تدريب القادة · المتابعة</p>
+      </div>
+    </div>
+
+    <div class="future-note" style="margin-top: 18px; background: var(--teal-fade); border-color: var(--teal);">
+      ⚓ <strong>الجوّالة:</strong> ١٨ جوال تحت التدريب — لهم جدول تدريب مستقل، ويساعدون في تنفيذ جدول الاجتماعات
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">SIX PILLARS · المحاور التربوية</div>
+    <h2 class="section-title">المحاور الستة</h2>
+    <p class="section-sub">كل قطاع، في كل سنة، يبني المخدوم على هذه المحاور الستة معاً — لا يطغى محور على آخر</p>
+  </div>
+
+  <div class="pillar-grid">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-icon">⚓</div>
+      <h3>كشفي</h3>
+      <p>المهارات الكشفية الأساسية: العقد، الإشارات، الانضباط، روح الفريق</p>
+    </div>
+    <div class="pillar" style="border-top-color: var(--coral);">
+      <div class="pillar-num">02</div>
+      <div class="pillar-icon">⛵</div>
+      <h3>إبحار</h3>
+      <p>المهارات البحرية: الملاحة، الشراع، التجديف، إنقاذ الغرقى</p>
+    </div>
+    <div class="pillar" style="border-top-color: #8b5cf6;">
+      <div class="pillar-num">03</div>
+      <div class="pillar-icon">🤝</div>
+      <h3>اجتماعي</h3>
+      <p>العلاقات الصحية، حل المشاكل، ضبط النفس، تأثير البيئة</p>
+    </div>
+    <div class="pillar" style="border-top-color: #3fa66e;">
+      <div class="pillar-num">04</div>
+      <div class="pillar-icon">💪</div>
+      <h3>بدني</h3>
+      <p>اللياقة، الصحة، الرياضة، التحمّل البدني</p>
+    </div>
+    <div class="pillar" style="border-top-color: #06b6d4;">
+      <div class="pillar-num">05</div>
+      <div class="pillar-icon">🌍</div>
+      <h3>ثقافي</h3>
+      <p>المعرفة العامة، التاريخ، الجغرافيا، الفنون والآداب</p>
+    </div>
+    <div class="pillar" style="border-top-color: var(--gold);">
+      <div class="pillar-num">06</div>
+      <div class="pillar-icon">✝️</div>
+      <h3>روحي</h3>
+      <p>العمود الفقري · الإيمان الأرثوذكسي العميق، الكتاب، الآباء، الكنيسة</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="inner">
     <div class="section-header">
       <div class="section-eyebrow">OUR JOURNEY · رحلتنا</div>
-      <h2 class="section-title">كيف بدأنا</h2>
-      <p class="section-sub">المحطات الكبرى في رحلة المجموعة الكشفية لكنائس زايد. (هذا الجدول يحتاج لتدقيق تواريخه)</p>
+      <h2 class="section-title">من البداية لحد دلوقتي</h2>
+      <p class="section-sub">المحطات الكبرى في رحلة المجموعة الكشفية لكنائس زايد</p>
     </div>
 
     <div class="timeline">
       <div class="timeline-item">
-        <div class="timeline-year">العام الأول</div>
-        <div class="timeline-title">البدايات</div>
-        <div class="timeline-text">انطلاق المجموعة الكشفية لكنائس زايد بنواة صغيرة من القادة، مستلهمين من كشافة مارمرقس بشبرا.</div>
+        <div class="timeline-year">يوليو ٢٠٢٢</div>
+        <div class="timeline-title">التأسيس</div>
+        <div class="timeline-text">انطلاق المجموعة الكشفية لكنائس زايد بنواة صغيرة من القادة المتطوعين، بمباركة الأب الكاهن، وبهدف خدمة أبناء الكنائس بأسلوب كشفي بحري مميز.</div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-year">العام الثاني · الثالث</div>
-        <div class="timeline-title">بناء القطاعات</div>
-        <div class="timeline-text">تأسيس قطاعات أشبال ومبتدئ، وبناء أول طلائع منتظمة في الاجتماعات والمعسكرات.</div>
+        <div class="timeline-year">٢٠٢٢ - ٢٠٢٣</div>
+        <div class="timeline-title">السنة الأولى — بناء الهوية</div>
+        <div class="timeline-text">تأسيس قطاع الأشبال والزهرات كنواة أولى. اختيار الطابع البحري كهوية مميزة للمجموعة. أول معسكر داخلي للأشبال.</div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-year">العام الرابع</div>
-        <div class="timeline-title">قطاع المتقدم</div>
-        <div class="timeline-text">انطلاق قطاع المتقدم/المتقدمات وأول المعسكرات الكشفية الكاملة.</div>
+        <div class="timeline-year">٢٠٢٣ - ٢٠٢٤</div>
+        <div class="timeline-title">السنة الثانية — توسيع القطاعات</div>
+        <div class="timeline-text">انطلاق قطاع المبتدئ والمرشدات. بناء أول طلائع منتظمة. توحيد الزي الكشفي البحري. مشاركة أولى في مؤتمر التربية.</div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-year">العام الخامس · 2026</div>
-        <div class="timeline-title">نظامنا الخاص</div>
-        <div class="timeline-text">إطلاق هذه المنصة الداخلية لتوحيد السيستم، التوثيق، التخطيط — والمحافظة على التراث الكشفي المُكتسب.</div>
+        <div class="timeline-year">٢٠٢٤ - ٢٠٢٥</div>
+        <div class="timeline-title">السنة الثالثة — قطاع المتقدم</div>
+        <div class="timeline-text">إطلاق قطاع المتقدم والمتقدمات. وصول العدد لـ ٢٠٠+ فرد. أول معسكر بحري خارجي كامل. تأسيس فريق الجوالة.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">٢٠٢٥ - ٢٠٢٦</div>
+        <div class="timeline-title">السنة الرابعة — التوثيق والنظام</div>
+        <div class="timeline-text">إطلاق النظام الإلكتروني الداخلي لتوحيد المناهج والمواسم والبروتوكولات. وصول العدد لـ ٢٥٠ فرد. تكامل القطاعات الثلاثة بشفعاء: داود النبي للمتقدم، مار جرجس للمبتدئ، الأنبا موسى الأسود للأشبال.</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-</div>
+<section class="section">
+  <div class="promise-banner">
+    <div class="promise-banner-text">
+      الكشّاف يخدم الله ووطنه،<br>
+      يساعد الآخرين في كل وقت،<br>
+      ويُطيع قانون الكشاف.
+    </div>
+    <div class="promise-banner-ref">SCOUT PROMISE · الوعد الكشفي</div>
+  </div>
+</section>
 
 <div id="footer-mount"></div>
 

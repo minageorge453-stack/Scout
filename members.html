@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الأولاد والبنات · كشافة كنائس زايد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Reem+Kufi:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+  .m-hero {
+    background: linear-gradient(160deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+    color: #fff;
+    padding: 48px 24px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .m-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(212,167,58,0.18) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .m-hero-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+  .m-hero .eyebrow {
+    font-family: var(--font-accent);
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .m-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 48px);
+    margin: 0 0 10px;
+    line-height: 1.1;
+  }
+  .m-hero p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  /* STATS STRIP */
+  .stats-strip {
+    background: #fff;
+    border-bottom: 1px solid rgba(45,138,150,0.12);
+    padding: 18px 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .stats-strip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 800px) { .stats-strip-inner { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 500px) { .stats-strip-inner { grid-template-columns: repeat(2, 1fr); } }
+  .stat-mini {
+    text-align: center;
+    padding: 6px;
+  }
+  .stat-mini .num {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--teal-deep);
+    line-height: 1;
+  }
+  .stat-mini .num.coral { color: var(--coral-deep); }
+  .stat-mini .num.gold { color: #b8860b; }
+  .stat-mini .num.indigo { color: var(--indigo); }
+  .stat-mini .num.burgundy { color: #8b1e3f; }
+  .stat-mini .num.orange { color: #ff6b35; }
+  .stat-mini .label {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    font-family: var(--font-accent);
+    letter-spacing: 1px;
+  }
+
+  /* ACTIONS BAR */
+  .actions-bar {
+    background: var(--paper-warm);
+    padding: 14px 24px;
+    border-bottom: 1px solid rgba(45,138,150,0.08);
+    position: sticky;
+    top: 56px;
+    z-index: 40;
+  }
+  .actions-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .left-actions, .right-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .btn-mini {
+    background: #fff;
+    border: 1px solid var(--teal);
+    color: var(--teal-deep);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: var(--font-modern);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-mini:hover { background: var(--teal-fade); }
+  .btn-mini.primary { background: var(--coral); border-color: var(--coral-deep); color: #fff; }
+  .btn-mini.primary:hover { background: var(--coral-deep); }
+  .btn-mini.success { background: #22c55e; border-color: #16a34a; color: #fff; }
+  .btn-mini.gold { background: var(--gold); border-color: #b8860b; color: #fff; }
+  .view-toggle {
+    display: flex;
+    background: #fff;
+    border: 1px solid rgba(45,138,150,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .view-toggle button {
+    background: transparent;
+    border: none;
+    padding: 8px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-family: var(--font-modern);
+  }
+  .view-toggle button.active {
+    background: var(--teal-deep);
+    color: #fff;
+  }
+
+  /* FILTERS */
+  .filters {
+    background: #fff;
+    padding: 14px 24px;
+    border-bottom: 1px solid rgba(45,138,150,0.08);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .filter-group {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .filter-group label {
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--ink-soft);
+    margin-left: 4px;
+  }
+  .filter-chip {
+    background: var(--paper-warm);
+    border: 1px solid rgba(45,138,150,0.15);
+    color: var(--ink-soft);
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-family: var(--font-modern);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-chip:hover { border-color: var(--teal); }
+  .filter-chip.active {
+    background: var(--teal-deep);
+    border-color: var(--teal-deep);
+    color: #fff;
+  }
+  .filter-chip.cubs.active { background: #ff6b35; border-color: #ff6b35; }
+  .filter-chip.junior.active { background: #8b1e3f; border-color: #8b1e3f; }
+  .filter-chip.advanced.active { background: var(--indigo); border-color: var(--indigo); }
+  .filter-chip.boy.active { background: #1d6b76; border-color: #1d6b76; }
+  .filter-chip.girl.active { background: #be185d; border-color: #be185d; }
+  .search-box {
+    flex: 1;
+    min-width: 180px;
+    background: #fff;
+    border: 1px solid rgba(45,138,150,0.2);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-family: var(--font-modern);
+    font-size: 13px;
+  }
+
+  /* CONTENT */
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  .empty-state {
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--ink-soft);
+  }
+  .empty-state .icon { font-size: 80px; margin-bottom: 16px; opacity: 0.4; }
+  .empty-state h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .empty-state p {
+    font-size: 15px;
+    line-height: 1.85;
+    margin-bottom: 24px;
+    max-width: 460px;
+    margin-inline: auto;
+  }
+  .empty-state .actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .results-count {
+    color: var(--ink-soft);
+    font-size: 13px;
+    margin-bottom: 14px;
+    font-family: var(--font-accent);
+    letter-spacing: 1px;
+  }
+
+  /* TABLE VIEW */
+  .table-wrap {
+    background: #fff;
+    border-radius: 12px;
+    overflow: auto;
+    border: 1px solid rgba(45,138,150,0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .members-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .members-table th {
+    background: var(--paper-warm);
+    padding: 12px 14px;
+    text-align: right;
+    font-family: var(--font-accent);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: var(--teal-deep);
+    border-bottom: 2px solid var(--teal);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    white-space: nowrap;
+  }
+  .members-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--paper-warm);
+    color: var(--ink);
+    vertical-align: middle;
+  }
+  .members-table tbody tr:hover { background: var(--paper-warm); }
+  .members-table .name-cell {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .sector-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .sector-tag.cubs { background: #ff6b35; }
+  .sector-tag.junior { background: #8b1e3f; }
+  .sector-tag.advanced { background: var(--indigo); }
+  .gender-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    background: var(--paper-warm);
+    color: var(--ink-soft);
+  }
+  .gender-tag.boy { background: #e0f2f4; color: #1d6b76; }
+  .gender-tag.girl { background: #fce7f3; color: #be185d; }
+  .actions-cell {
+    display: flex;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .icon-btn {
+    background: transparent;
+    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    font-size: 13px;
+    transition: all 0.15s;
+  }
+  .icon-btn:hover { background: var(--paper-warm); color: var(--coral-deep); }
+  .icon-btn.danger:hover { background: #fee2e2; color: #dc2626; }
+
+  /* CARD VIEW */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .member-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 1px solid rgba(45,138,150,0.12);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: all 0.2s;
+    border-right: 4px solid var(--teal);
+  }
+  .member-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  }
+  .member-card.s-cubs { border-right-color: #ff6b35; }
+  .member-card.s-junior { border-right-color: #8b1e3f; }
+  .member-card.s-advanced { border-right-color: var(--indigo); }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .card-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .card-actions { display: flex; gap: 2px; opacity: 0; transition: opacity 0.2s; }
+  .member-card:hover .card-actions { opacity: 1; }
+  .member-name {
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: var(--ink);
+    margin: 6px 0 6px;
+    line-height: 1.3;
+  }
+  .member-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .meta-item {
+    background: var(--paper-warm);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,20,25,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  .modal h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .modal-sub { color: var(--ink-soft); font-size: 14px; margin-bottom: 20px; }
+  .modal-close {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    background: var(--paper-warm);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+  .form-group { margin-bottom: 14px; }
+  .form-group label {
+    display: block;
+    font-family: var(--font-accent);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--coral-deep);
+    margin-bottom: 6px;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    background: var(--paper-warm);
+    border: 1px solid rgba(45,138,150,0.15);
+    padding: 9px 13px;
+    border-radius: 8px;
+    font-family: var(--font-modern);
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--teal);
+    background: #fff;
+  }
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--paper-warm);
+  }
+  .btn-modal {
+    padding: 9px 22px;
+    border-radius: 8px;
+    font-family: var(--font-modern);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-modal.cancel { background: #fff; border-color: rgba(45,138,150,0.2); color: var(--ink-soft); }
+  .btn-modal.save { background: var(--coral); color: #fff; }
+
+  /* IMPORT MODAL */
+  .import-modal { max-width: 720px; }
+  .import-step {
+    background: var(--paper-warm);
+    padding: 16px 20px;
+    border-radius: 10px;
+    border-right: 3px solid var(--coral);
+    margin-bottom: 12px;
+  }
+  .import-step h5 {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .import-step p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0 0 6px;
+    line-height: 1.7;
+  }
+  .file-drop {
+    border: 2px dashed var(--teal);
+    background: var(--teal-fade);
+    border-radius: 12px;
+    padding: 28px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin: 14px 0;
+  }
+  .file-drop:hover { background: #d4e9ec; }
+  .file-drop .big-icon { font-size: 42px; margin-bottom: 10px; }
+  .file-drop h4 {
+    font-family: var(--font-display);
+    color: var(--teal-deep);
+    margin: 0 0 4px;
+  }
+  .file-drop p {
+    color: var(--ink-soft);
+    font-size: 13px;
+    margin: 0;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    right: 50%;
+    transform: translateX(50%);
+    background: var(--indigo);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div id="topnav-mount"></div>
+
+<header class="m-hero">
+  <div class="m-hero-inner">
+    <div class="eyebrow">MEMBERS · الأولاد والبنات</div>
+    <h1>قائمة الأولاد والبنات</h1>
+    <p>إدارة كاملة لبيانات الـ ٢٥٠ مخدوم في المجموعة · أضف يدوياً أو استورد من Excel</p>
+  </div>
+</header>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-strip-inner">
+    <div class="stat-mini"><div class="num indigo" id="stat-total">٠</div><div class="label">الكل</div></div>
+    <div class="stat-mini"><div class="num burgundy" id="stat-girls">٠</div><div class="label">بنات</div></div>
+    <div class="stat-mini"><div class="num" id="stat-boys">٠</div><div class="label">ولاد</div></div>
+    <div class="stat-mini"><div class="num orange" id="stat-cubs">٠</div><div class="label">أشبال</div></div>
+    <div class="stat-mini"><div class="num burgundy" id="stat-junior">٠</div><div class="label">مبتدئ</div></div>
+    <div class="stat-mini"><div class="num indigo" id="stat-advanced">٠</div><div class="label">متقدم</div></div>
+  </div>
+</div>
+
+<!-- ACTIONS BAR -->
+<div class="actions-bar">
+  <div class="actions-bar-inner">
+    <div class="left-actions">
+      <button class="btn-mini primary" onclick="openAddModal()">+ إضافة فرد</button>
+      <button class="btn-mini success" onclick="openImportModal()">📥 استيراد من Excel</button>
+      <button class="btn-mini" onclick="exportToCSV()">📤 تصدير Excel</button>
+      <button class="btn-mini gold" onclick="downloadTemplate()">📋 قالب فاضي</button>
+    </div>
+    <div class="right-actions">
+      <div class="view-toggle">
+        <button class="active" data-view="table" onclick="setView('table')">📊 جدول</button>
+        <button data-view="cards" onclick="setView('cards')">🎴 كروت</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="filter-group">
+    <label>القطاع:</label>
+    <button class="filter-chip active" data-sector="all" onclick="setFilter('sector', 'all')">الكل</button>
+    <button class="filter-chip cubs" data-sector="cubs" onclick="setFilter('sector', 'cubs')">أشبال</button>
+    <button class="filter-chip junior" data-sector="junior" onclick="setFilter('sector', 'junior')">مبتدئ</button>
+    <button class="filter-chip advanced" data-sector="advanced" onclick="setFilter('sector', 'advanced')">متقدم</button>
+  </div>
+  <div class="filter-group">
+    <label>النوع:</label>
+    <button class="filter-chip active" data-gender="all" onclick="setFilter('gender', 'all')">الكل</button>
+    <button class="filter-chip boy" data-gender="boy" onclick="setFilter('gender', 'boy')">ولد</button>
+    <button class="filter-chip girl" data-gender="girl" onclick="setFilter('gender', 'girl')">بنت</button>
+  </div>
+  <input type="text" class="search-box" placeholder="🔍 ابحث بالاسم أو الفصل..." id="search" oninput="render()">
+</div>
+
+<!-- CONTENT -->
+<div class="content" id="content"></div>
+
+<!-- ADD/EDIT MODAL -->
+<div class="modal-overlay" id="edit-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2 id="modal-title">إضافة فرد جديد</h2>
+    <p class="modal-sub">الاسم والقطاع إجباريين · باقي الحقول اختيارية</p>
+    <input type="hidden" id="member-id">
+    <div class="form-group">
+      <label>الاسم الكامل *</label>
+      <input type="text" id="m-name" placeholder="مثال: مينا جورج رزق">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>القطاع *</label>
+        <select id="m-sector">
+          <option value="">— اختر القطاع —</option>
+          <option value="cubs">أشبال وزهرات (٣-٥ ابتدائي)</option>
+          <option value="junior">مبتدئ ومرشدات (٦ ابت + ١،٢ إع)</option>
+          <option value="advanced">متقدم ومتقدمات (٣ إع + ١،٢ ث)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>النوع *</label>
+        <select id="m-gender">
+          <option value="">— اختر —</option>
+          <option value="boy">ولد</option>
+          <option value="girl">بنت</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>السنة الدراسية</label>
+        <input type="text" id="m-grade" placeholder="مثال: ٤ ابتدائي">
+      </div>
+      <div class="form-group">
+        <label>المدرسة (اختياري)</label>
+        <input type="text" id="m-school" placeholder="اسم المدرسة">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>الكنيسة</label>
+        <select id="m-church">
+          <option value="">— غير محدد —</option>
+          <option value="anba-samuel">الأنبا صموئيل</option>
+          <option value="pope-kyrillos">البابا كيرلس</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>الطليعة</label>
+        <input type="text" id="m-team" placeholder="اسم الطليعة">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>تليفون ولي الأمر</label>
+        <input type="text" id="m-parent-phone" placeholder="01XXXXXXXXX">
+      </div>
+      <div class="form-group">
+        <label>اسم ولي الأمر</label>
+        <input type="text" id="m-parent-name" placeholder="اسم الأب أو الأم">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>ملاحظات</label>
+      <textarea id="m-notes" rows="2" placeholder="أي ملاحظات إضافية (صحية، اجتماعية، إلخ)"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-modal cancel" onclick="closeModal()">إلغاء</button>
+      <button class="btn-modal save" onclick="saveMember()">حفظ</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMPORT MODAL -->
+<div class="modal-overlay" id="import-modal">
+  <div class="modal import-modal">
+    <button class="modal-close" onclick="closeImportModal()">×</button>
+    <h2>📥 استيراد من Excel</h2>
+    <p class="modal-sub">استورد قائمة الأولاد دفعة واحدة من ملف CSV (Excel)</p>
+
+    <div class="import-step">
+      <h5>📋 الخطوة ١ — نزّل القالب الفاضي</h5>
+      <p>القالب فيه الأعمدة الصحيحة بالترتيب الصح. املأه في Excel ثم احفظه كـ CSV (UTF-8).</p>
+      <button class="btn-mini gold" onclick="downloadTemplate()">⬇️ تحميل القالب</button>
+    </div>
+
+    <div class="import-step" style="border-right-color: var(--teal);">
+      <h5>💾 الخطوة ٢ — احفظه كـ CSV</h5>
+      <p>في Excel: File → Save As → اختر CSV UTF-8 (Comma delimited). ده مهم عشان العربي يطلع صح.</p>
+    </div>
+
+    <div class="import-step" style="border-right-color: var(--gold);">
+      <h5>📤 الخطوة ٣ — ارفع الملف</h5>
+      <p>اسحب الملف هنا أو دوس لاختياره. النظام هيستبدل أي بيانات موجودة قبل كده.</p>
+    </div>
+
+    <label class="file-drop" for="csv-file">
+      <div class="big-icon">📁</div>
+      <h4>اسحب ملف CSV هنا</h4>
+      <p>أو دوس للاختيار من جهازك</p>
+      <input type="file" id="csv-file" accept=".csv" style="display:none" onchange="handleCSV(event)">
+    </label>
+
+    <div class="modal-actions">
+      <button class="btn-modal cancel" onclick="closeImportModal()">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div id="footer-mount"></div>
+
+<script src="assets/zs.js"></script>
+<script>
+  ZS.requireAuth();
+  ZS.mountChrome('members');
+
+  // ===== STATE =====
+  const STORAGE_KEY = 'zs_members_v1';
+  let members = loadMembers();
+  let filters = { sector: 'all', gender: 'all' };
+  let currentView = 'table';
+
+  function loadMembers() {
+    try {
+      const data = localStorage.getItem(STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    } catch (e) { return []; }
+  }
+
+  function saveMembers() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(members)); }
+    catch (e) { toast('⚠️ فشل الحفظ'); }
+  }
+
+  function generateId() {
+    return 'M_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+  }
+
+  function toArabicNum(n) {
+    const ar = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    return String(n).split('').map(d => ar[parseInt(d)] || d).join('');
+  }
+
+  function escapeHtml(s) {
+    if (!s) return '';
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  }
+
+  // ===== LABELS =====
+  const SECTOR_LABELS = {
+    'cubs': 'أشبال',
+    'junior': 'مبتدئ',
+    'advanced': 'متقدم'
+  };
+  const SECTOR_FULL = {
+    'cubs': 'أشبال وزهرات',
+    'junior': 'مبتدئ ومرشدات',
+    'advanced': 'متقدم ومتقدمات'
+  };
+  const CHURCH_LABELS = {
+    'anba-samuel': 'الأنبا صموئيل',
+    'pope-kyrillos': 'البابا كيرلس'
+  };
+
+  // ===== FILTERING =====
+  function getFilteredMembers() {
+    const search = (document.getElementById('search').value || '').trim().toLowerCase();
+    return members.filter(m => {
+      if (filters.sector !== 'all' && m.sector !== filters.sector) return false;
+      if (filters.gender !== 'all' && m.gender !== filters.gender) return false;
+      if (search) {
+        const hay = (m.name + ' ' + (m.grade||'') + ' ' + (m.school||'') + ' ' + (m.team||'') + ' ' + (m.parentName||'')).toLowerCase();
+        if (!hay.includes(search)) return false;
+      }
+      return true;
+    });
+  }
+
+  // ===== RENDER =====
+  function render() {
+    updateStats();
+    const filtered = getFilteredMembers();
+    const container = document.getElementById('content');
+
+    if (members.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="icon">👨‍👩‍👧‍👦</div>
+          <h3>مفيش بيانات أولاد لسة</h3>
+          <p>ابدأ بإضافة أول فرد يدوياً أو استورد قائمة كاملة من Excel.</p>
+          <div class="actions">
+            <button class="btn-mini primary" onclick="openAddModal()">+ إضافة أول فرد</button>
+            <button class="btn-mini success" onclick="openImportModal()">📥 استيراد من Excel</button>
+          </div>
+        </div>`;
+      return;
+    }
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="icon">🔍</div>
+          <h3>مفيش نتائج</h3>
+          <p>جرّب تغيّر الفلاتر أو امسح البحث</p>
+        </div>`;
+      return;
+    }
+
+    let html = `<div class="results-count">عرض ${toArabicNum(filtered.length)} من إجمالي ${toArabicNum(members.length)}</div>`;
+    html += currentView === 'table' ? renderTable(filtered) : renderCards(filtered);
+    container.innerHTML = html;
+  }
+
+  function renderTable(list) {
+    return `
+      <div class="table-wrap">
+        <table class="members-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>الاسم</th>
+              <th>القطاع</th>
+              <th>النوع</th>
+              <th>السنة</th>
+              <th>الطليعة</th>
+              <th>الكنيسة</th>
+              <th>ولي الأمر</th>
+              <th>التليفون</th>
+              <th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${list.map((m, i) => `
+              <tr>
+                <td>${toArabicNum(i + 1)}</td>
+                <td class="name-cell">${escapeHtml(m.name)}</td>
+                <td><span class="sector-tag ${m.sector}">${SECTOR_LABELS[m.sector] || m.sector}</span></td>
+                <td><span class="gender-tag ${m.gender}">${m.gender === 'boy' ? '👦 ولد' : '👧 بنت'}</span></td>
+                <td>${escapeHtml(m.grade || '—')}</td>
+                <td>${escapeHtml(m.team || '—')}</td>
+                <td>${m.church ? CHURCH_LABELS[m.church] : '—'}</td>
+                <td>${escapeHtml(m.parentName || '—')}</td>
+                <td style="font-family:var(--font-modern); direction:ltr; text-align:right;">${escapeHtml(m.parentPhone || '—')}</td>
+                <td>
+                  <div class="actions-cell">
+                    <button class="icon-btn" onclick="openEditModal('${m.id}')" title="تعديل">✎</button>
+                    <button class="icon-btn danger" onclick="deleteMember('${m.id}')" title="حذف">🗑</button>
+                  </div>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>`;
+  }
+
+  function renderCards(list) {
+    return `
+      <div class="cards-grid">
+        ${list.map(m => `
+          <div class="member-card s-${m.sector}">
+            <div class="card-header">
+              <div class="card-tags">
+                <span class="sector-tag ${m.sector}">${SECTOR_FULL[m.sector]}</span>
+                <span class="gender-tag ${m.gender}">${m.gender === 'boy' ? '👦' : '👧'}</span>
+              </div>
+              <div class="card-actions">
+                <button class="icon-btn" onclick="openEditModal('${m.id}')">✎</button>
+                <button class="icon-btn danger" onclick="deleteMember('${m.id}')">🗑</button>
+              </div>
+            </div>
+            <div class="member-name">${escapeHtml(m.name)}</div>
+            <div class="member-meta">
+              ${m.grade ? `<span class="meta-item">📚 ${escapeHtml(m.grade)}</span>` : ''}
+              ${m.team ? `<span class="meta-item">⚓ ${escapeHtml(m.team)}</span>` : ''}
+              ${m.church ? `<span class="meta-item">⛪ ${CHURCH_LABELS[m.church]}</span>` : ''}
+              ${m.parentPhone ? `<span class="meta-item" style="direction:ltr;display:inline-block;">📞 ${escapeHtml(m.parentPhone)}</span>` : ''}
+            </div>
+          </div>
+        `).join('')}
+      </div>`;
+  }
+
+  function updateStats() {
+    document.getElementById('stat-total').textContent = toArabicNum(members.length);
+    document.getElementById('stat-girls').textContent = toArabicNum(members.filter(m => m.gender === 'girl').length);
+    document.getElementById('stat-boys').textContent = toArabicNum(members.filter(m => m.gender === 'boy').length);
+    document.getElementById('stat-cubs').textContent = toArabicNum(members.filter(m => m.sector === 'cubs').length);
+    document.getElementById('stat-junior').textContent = toArabicNum(members.filter(m => m.sector === 'junior').length);
+    document.getElementById('stat-advanced').textContent = toArabicNum(members.filter(m => m.sector === 'advanced').length);
+  }
+
+  // ===== FILTERS =====
+  function setFilter(type, value) {
+    filters[type] = value;
+    document.querySelectorAll(`.filter-chip[data-${type}]`).forEach(c => {
+      c.classList.toggle('active', c.dataset[type] === value);
+    });
+    render();
+  }
+
+  function setView(view) {
+    currentView = view;
+    document.querySelectorAll('.view-toggle button').forEach(b => {
+      b.classList.toggle('active', b.dataset.view === view);
+    });
+    render();
+  }
+
+  // ===== MODAL CRUD =====
+  let editingId = null;
+
+  function openAddModal() {
+    editingId = null;
+    document.getElementById('modal-title').textContent = 'إضافة فرد جديد';
+    ['member-id','m-name','m-grade','m-school','m-team','m-parent-phone','m-parent-name','m-notes']
+      .forEach(id => document.getElementById(id).value = '');
+    ['m-sector','m-gender','m-church'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('edit-modal').classList.add('show');
+    setTimeout(() => document.getElementById('m-name').focus(), 100);
+  }
+
+  function openEditModal(id) {
+    const m = members.find(x => x.id === id);
+    if (!m) return;
+    editingId = id;
+    document.getElementById('modal-title').textContent = 'تعديل بيانات الفرد';
+    document.getElementById('member-id').value = m.id;
+    document.getElementById('m-name').value = m.name || '';
+    document.getElementById('m-sector').value = m.sector || '';
+    document.getElementById('m-gender').value = m.gender || '';
+    document.getElementById('m-grade').value = m.grade || '';
+    document.getElementById('m-school').value = m.school || '';
+    document.getElementById('m-church').value = m.church || '';
+    document.getElementById('m-team').value = m.team || '';
+    document.getElementById('m-parent-phone').value = m.parentPhone || '';
+    document.getElementById('m-parent-name').value = m.parentName || '';
+    document.getElementById('m-notes').value = m.notes || '';
+    document.getElementById('edit-modal').classList.add('show');
+  }
+
+  function closeModal() {
+    document.getElementById('edit-modal').classList.remove('show');
+    editingId = null;
+  }
+
+  function saveMember() {
+    const name = document.getElementById('m-name').value.trim();
+    const sector = document.getElementById('m-sector').value;
+    const gender = document.getElementById('m-gender').value;
+    if (!name || !sector || !gender) {
+      toast('⚠️ الاسم والقطاع والنوع إجباريين');
+      return;
+    }
+    const data = {
+      name, sector, gender,
+      grade: document.getElementById('m-grade').value.trim() || null,
+      school: document.getElementById('m-school').value.trim() || null,
+      church: document.getElementById('m-church').value || null,
+      team: document.getElementById('m-team').value.trim() || null,
+      parentPhone: document.getElementById('m-parent-phone').value.trim() || null,
+      parentName: document.getElementById('m-parent-name').value.trim() || null,
+      notes: document.getElementById('m-notes').value.trim() || null
+    };
+    if (editingId) {
+      const idx = members.findIndex(m => m.id === editingId);
+      if (idx >= 0) { members[idx] = { ...members[idx], ...data }; toast('✓ اتعدّل'); }
+    } else {
+      data.id = generateId();
+      data.createdAt = new Date().toISOString();
+      members.push(data);
+      toast('✓ تمت الإضافة');
+    }
+    saveMembers();
+    closeModal();
+    render();
+  }
+
+  function deleteMember(id) {
+    const m = members.find(x => x.id === id);
+    if (!m) return;
+    if (!confirm(`متأكد من حذف "${m.name}"؟`)) return;
+    members = members.filter(x => x.id !== id);
+    saveMembers();
+    render();
+    toast('🗑 اتحذف');
+  }
+
+  // ===== IMPORT / EXPORT =====
+  function openImportModal() {
+    document.getElementById('import-modal').classList.add('show');
+  }
+  function closeImportModal() {
+    document.getElementById('import-modal').classList.remove('show');
+  }
+
+  function downloadTemplate() {
+    const headers = ['الاسم', 'القطاع', 'النوع', 'السنة الدراسية', 'المدرسة', 'الكنيسة', 'الطليعة', 'تليفون ولي الأمر', 'اسم ولي الأمر', 'ملاحظات'];
+    const exampleRows = [
+      ['مينا جورج رزق', 'cubs', 'boy', '4 ابتدائي', 'مدرسة زايد', 'anba-samuel', 'الدلافين', '01234567890', 'جورج رزق', ''],
+      ['مريم سامي', 'junior', 'girl', '1 إعدادي', 'مدرسة النخيل', 'pope-kyrillos', 'الزهرات', '01098765432', 'سامي يوسف', ''],
+      ['اندرو ميلاد', 'advanced', 'boy', '2 ثانوي', '', 'anba-samuel', 'البحارة', '', '', 'نشيط جداً']
+    ];
+    const csv = '\ufeff' + [headers.join(','), ...exampleRows.map(r => r.map(c => `"${(c||'').replace(/"/g,'""')}"`).join(','))].join('\n');
+    downloadFile(csv, 'zayed-scout-members-template.csv', 'text/csv;charset=utf-8;');
+    toast('📋 تم تحميل القالب');
+  }
+
+  function exportToCSV() {
+    if (members.length === 0) { toast('⚠️ مفيش بيانات للتصدير'); return; }
+    const headers = ['الاسم', 'القطاع', 'النوع', 'السنة الدراسية', 'المدرسة', 'الكنيسة', 'الطليعة', 'تليفون ولي الأمر', 'اسم ولي الأمر', 'ملاحظات'];
+    const rows = members.map(m => [
+      m.name || '',
+      m.sector || '',
+      m.gender || '',
+      m.grade || '',
+      m.school || '',
+      m.church || '',
+      m.team || '',
+      m.parentPhone || '',
+      m.parentName || '',
+      m.notes || ''
+    ]);
+    const csv = '\ufeff' + [headers.join(','), ...rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(','))].join('\n');
+    const date = new Date().toISOString().slice(0, 10);
+    downloadFile(csv, `zayed-scout-members-${date}.csv`, 'text/csv;charset=utf-8;');
+    toast('📤 تم التصدير');
+  }
+
+  function downloadFile(content, filename, mime) {
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename; a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function handleCSV(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        let text = e.target.result;
+        // Remove BOM if present
+        if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+        const lines = text.split(/\r?\n/).filter(l => l.trim());
+        if (lines.length < 2) { toast('⚠️ الملف فاضي'); return; }
+        // Parse CSV (simple parser)
+        const parseRow = (line) => {
+          const result = [];
+          let current = '';
+          let inQuotes = false;
+          for (let i = 0; i < line.length; i++) {
+            const ch = line[i];
+            if (ch === '"') {
+              if (inQuotes && line[i+1] === '"') { current += '"'; i++; }
+              else { inQuotes = !inQuotes; }
+            } else if (ch === ',' && !inQuotes) {
+              result.push(current); current = '';
+            } else {
+              current += ch;
+            }
+          }
+          result.push(current);
+          return result;
+        };
+        const rows = lines.slice(1).map(parseRow);
+        const imported = rows.map(r => ({
+          id: generateId(),
+          createdAt: new Date().toISOString(),
+          name: (r[0] || '').trim(),
+          sector: (r[1] || '').trim().toLowerCase(),
+          gender: (r[2] || '').trim().toLowerCase(),
+          grade: (r[3] || '').trim() || null,
+          school: (r[4] || '').trim() || null,
+          church: (r[5] || '').trim() || null,
+          team: (r[6] || '').trim() || null,
+          parentPhone: (r[7] || '').trim() || null,
+          parentName: (r[8] || '').trim() || null,
+          notes: (r[9] || '').trim() || null
+        })).filter(m => m.name && m.sector && m.gender);
+
+        if (imported.length === 0) {
+          toast('⚠️ مفيش بيانات صالحة في الملف');
+          return;
+        }
+        if (members.length > 0) {
+          if (!confirm(`عندك ${members.length} فرد محفوظين. الاستيراد هيستبدلهم بـ ${imported.length} فرد جدد. متأكد؟`)) return;
+        }
+        members = imported;
+        saveMembers();
+        render();
+        closeImportModal();
+        toast(`✓ تم استيراد ${imported.length} فرد`);
+      } catch (err) {
+        toast('⚠️ خطأ في قراءة الملف');
+        console.error(err);
+      }
+    };
+    reader.readAsText(file, 'UTF-8');
+    event.target.value = '';
+  }
+
+  // ===== TOAST =====
+  function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  // ===== CLICK OUTSIDE / ESC =====
+  document.getElementById('edit-modal').addEventListener('click', e => { if (e.target.id === 'edit-modal') closeModal(); });
+  document.getElementById('import-modal').addEventListener('click', e => { if (e.target.id === 'import-modal') closeImportModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeModal(); closeImportModal(); }
+  });
+
+  render();
+</script>
+
+</body>
+</html>

@@ -3,153 +3,1024 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>القادة والتوزيع · كشافة كنائس زايد</title>
+<title>القادة والتوزيعات · كشافة كنائس زايد</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Reem+Kufi:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/shared.css">
 <style>
-  .input-zone {
-    background: linear-gradient(135deg, rgba(45, 138, 150, 0.06), rgba(255, 107, 91, 0.04));
-    border: 2px dashed var(--teal-light);
-    border-radius: 20px;
-    padding: 40px 32px;
+  /* =========== PAGE HERO =========== */
+  .lead-hero {
+    background: linear-gradient(160deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+    color: #fff;
+    padding: 56px 24px 44px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
-  .input-zone h3 {
+  .lead-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(212,167,58,0.18) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .lead-hero-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+  .lead-hero .eyebrow {
     font-family: var(--font-accent);
-    color: var(--teal-deep);
-    margin-bottom: 8px;
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    margin-bottom: 12px;
   }
-  .org-tree {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px 0;
+  .lead-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 5vw, 52px);
+    margin: 0 0 12px;
+    line-height: 1.1;
   }
-  .tree-node {
+  .lead-hero .lead {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* =========== TOP BAR (stats + actions) =========== */
+  .top-bar {
     background: #fff;
-    border: 1px solid rgba(45, 138, 150, 0.15);
-    border-radius: 14px;
-    padding: 16px 22px;
-    min-width: 220px;
-    text-align: center;
-    box-shadow: 0 4px 14px var(--shadow);
+    border-bottom: 1px solid rgba(45,138,150,0.12);
+    padding: 18px 24px;
+    position: sticky;
+    top: 56px;
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
-  .tree-node strong {
+  .top-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .stats-mini {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .stat-mini {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .stat-mini .num {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal-deep);
+    line-height: 1;
+  }
+  .stat-mini .label {
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .actions-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .btn-action {
+    background: #fff;
+    border: 1px solid var(--teal);
+    color: var(--teal-deep);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: var(--font-modern);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-action:hover {
+    background: var(--teal-fade);
+  }
+  .btn-action.primary {
+    background: var(--coral);
+    border-color: var(--coral-deep);
+    color: #fff;
+  }
+  .btn-action.primary:hover {
+    background: var(--coral-deep);
+  }
+  .btn-action.gold {
+    background: var(--gold);
+    border-color: #b8860b;
+    color: #fff;
+  }
+
+  /* =========== FILTERS =========== */
+  .filters-bar {
+    background: var(--paper-warm);
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(45,138,150,0.08);
+  }
+  .filters-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filters-label {
+    font-family: var(--font-accent);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--ink-soft);
+    margin-left: 8px;
+  }
+  .filter-chip {
+    background: #fff;
+    border: 1px solid rgba(45,138,150,0.2);
+    color: var(--ink-soft);
+    padding: 7px 14px;
+    border-radius: 100px;
+    font-family: var(--font-modern);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-chip:hover {
+    border-color: var(--teal);
+    color: var(--teal-deep);
+  }
+  .filter-chip.active {
+    background: var(--teal-deep);
+    border-color: var(--teal-deep);
+    color: #fff;
+  }
+  .filter-search {
+    flex: 1;
+    min-width: 200px;
+    background: #fff;
+    border: 1px solid rgba(45,138,150,0.2);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: var(--font-modern);
+    font-size: 13px;
+  }
+
+  /* =========== MAIN CONTENT =========== */
+  .main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+  .empty-state {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--ink-soft);
+  }
+  .empty-state .icon {
+    font-size: 72px;
+    margin-bottom: 16px;
+    opacity: 0.4;
+  }
+  .empty-state h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .empty-state p {
+    font-size: 15px;
+    line-height: 1.85;
+    margin-bottom: 24px;
+  }
+
+  /* =========== GROUP SECTIONS =========== */
+  .group-section {
+    margin-bottom: 36px;
+  }
+  .group-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--paper-warm);
+  }
+  .group-header h2 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--ink);
+    margin: 0;
+  }
+  .group-count {
+    background: var(--teal-fade);
+    color: var(--teal-deep);
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-family: var(--font-accent);
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+  .leaders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  /* =========== LEADER CARD =========== */
+  .leader-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px 18px;
+    border: 1px solid rgba(45,138,150,0.12);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: all 0.2s;
+    position: relative;
+  }
+  .leader-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    border-color: var(--teal);
+  }
+  .leader-card.role-priest { border-top: 3px solid #8b5cf6; }
+  .leader-card.role-leader-general { border-top: 3px solid var(--gold); }
+  .leader-card.role-deputy { border-top: 3px solid #ec4899; }
+  .leader-card.role-sector-male, .leader-card.role-sector-female { border-top: 3px solid var(--teal); }
+  .leader-card.role-assistant { border-top: 3px solid var(--coral); }
+  .leader-card.role-admin { border-top: 3px solid #06b6d4; }
+  .leader-card.role-leader { border-top: 3px solid var(--ink-soft); }
+  .leader-card.role-jawal { border-top: 3px solid #3fa66e; border-style: dashed; }
+  .leader-card.role-committee { border-top: 3px solid #f59e0b; }
+
+  .card-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .role-badge {
+    font-family: var(--font-accent);
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--paper-warm);
+    color: var(--ink-soft);
+  }
+  .role-badge.role-priest { background: #f3e8ff; color: #6d28d9; }
+  .role-badge.role-leader-general { background: #fef3c7; color: #b8860b; }
+  .role-badge.role-deputy { background: #fce7f3; color: #be185d; }
+  .role-badge.role-sector-male, .role-badge.role-sector-female { background: var(--teal-fade); color: var(--teal-deep); }
+  .role-badge.role-assistant { background: #fee4e0; color: var(--coral-deep); }
+  .role-badge.role-admin { background: #cffafe; color: #0e7490; }
+  .role-badge.role-jawal { background: #d1fae5; color: #047857; }
+  .role-badge.role-committee { background: #fef3c7; color: #b45309; }
+
+  .card-actions {
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .leader-card:hover .card-actions { opacity: 1; }
+  .icon-btn {
+    background: transparent;
+    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    font-size: 14px;
+    transition: all 0.15s;
+  }
+  .icon-btn:hover { background: var(--paper-warm); color: var(--coral-deep); }
+  .icon-btn.danger:hover { background: #fee2e2; color: #dc2626; }
+
+  .leader-name {
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: var(--ink);
+    margin: 0 0 4px;
+    font-weight: 700;
+  }
+  .leader-position {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .leader-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .meta-tag {
+    background: var(--paper-warm);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+  .leader-notes {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(45,138,150,0.15);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* =========== MODAL =========== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,20,25,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 50px 20px;
+    overflow-y: auto;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px;
+    max-width: 540px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  .modal h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .modal .modal-sub {
+    color: var(--ink-soft);
+    font-size: 14px;
+    margin-bottom: 22px;
+  }
+  .modal-close {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    background: var(--paper-warm);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--ink-soft);
+  }
+  .form-group {
+    margin-bottom: 16px;
+  }
+  .form-group label {
     display: block;
     font-family: var(--font-accent);
-    color: var(--indigo);
-    font-size: 15px;
-    margin-bottom: 4px;
-  }
-  .tree-node span {
-    font-family: var(--font-modern);
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 2px;
-    color: var(--teal-deep);
-    text-transform: uppercase;
-    font-weight: 600;
+    color: var(--coral-deep);
+    margin-bottom: 6px;
   }
-  .tn-top { background: linear-gradient(135deg, var(--teal), var(--teal-deep)); color: #fff; }
-  .tn-top strong, .tn-top span { color: #fff; }
-  .tree-row {
-    display: flex;
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--paper-warm);
+    border: 1px solid rgba(45,138,150,0.15);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-family: var(--font-modern);
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--teal);
+    background: #fff;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 14px;
-    flex-wrap: wrap;
-    justify-content: center;
   }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--paper-warm);
+  }
+  .btn-modal {
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-family: var(--font-modern);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-modal.cancel {
+    background: #fff;
+    border-color: rgba(45,138,150,0.2);
+    color: var(--ink-soft);
+  }
+  .btn-modal.save {
+    background: var(--coral);
+    color: #fff;
+  }
+  .btn-modal.save:hover { background: var(--coral-deep); }
+
+  /* =========== Toast =========== */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    right: 50%;
+    transform: translateX(50%);
+    background: var(--indigo);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .toast.show { opacity: 1; }
 </style>
 </head>
 <body>
+
 <div id="topnav-mount"></div>
-<div class="page-wrap">
-  <div class="page-hero">
-    <div class="page-hero-eyebrow">LEADERS · القادة</div>
-    <h1>القادة والتوزيع</h1>
-    <p>شجرة القيادة الكاملة للمجموعة الكشفية لكنائس زايد — تنتظر إدخال الأسماء والتوزيعات الفعلية.</p>
+
+<header class="lead-hero">
+  <div class="lead-hero-inner">
+    <div class="eyebrow">LEADERS & ASSIGNMENTS · القادة والتوزيعات</div>
+    <h1>القادة والجوّالة</h1>
+    <p class="lead">دلوقتي تقدر تضيف وتعدّل وتحذف القادة والجوّالة وتوزّعهم على القطاعات واللجان</p>
   </div>
+</header>
 
-  <section class="section">
-    <div class="section-header">
-      <div class="section-eyebrow">ORG TREE · هيكل القيادة</div>
-      <h2 class="section-title">الهيكل المقترح (يحتاج تعبئة)</h2>
-      <p class="section-sub">الهيكل العام مأخوذ من كشافة مارمرقس، لكن الأسماء والتوزيعات هتدخلها بنفسك لأنها مختلفة عندكم.</p>
-    </div>
-
-    <div class="org-tree">
-      <div class="tree-node tn-top">
-        <strong>قائد المجموعة العام</strong>
-        <span>HEAD · بانتظار الإسم</span>
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="stats-mini">
+      <div class="stat-mini">
+        <span class="num" id="stat-total">٠</span>
+        <span class="label">الكل</span>
       </div>
-      <div class="tree-row">
-        <div class="tree-node">
-          <strong>مساعد قائد المجموعة</strong>
-          <span>ASSISTANT 1</span>
-        </div>
-        <div class="tree-node">
-          <strong>مساعد قائد المجموعة</strong>
-          <span>ASSISTANT 2</span>
-        </div>
+      <div class="stat-mini">
+        <span class="num" id="stat-leaders">٠</span>
+        <span class="label">قادة</span>
       </div>
-      <div class="tree-row">
-        <div class="tree-node">
-          <strong>قائد قطاع متقدم</strong>
-          <span>ADVANCED</span>
-        </div>
-        <div class="tree-node">
-          <strong>قائد قطاع مبتدئ</strong>
-          <span>BEGINNER</span>
-        </div>
-        <div class="tree-node">
-          <strong>قائد قطاع أشبال</strong>
-          <span>CUBS</span>
-        </div>
-        <div class="tree-node">
-          <strong>قائد العشيرة</strong>
-          <span>RANGERS</span>
-        </div>
+      <div class="stat-mini">
+        <span class="num" id="stat-jawal">٠</span>
+        <span class="label">جوّالة</span>
       </div>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="section-header">
-      <div class="section-eyebrow">YOUR INPUT · من قِبَلك</div>
-      <h2 class="section-title">القادة والتوزيع الفعلي</h2>
+    <div class="actions-row">
+      <button class="btn-action primary" onclick="openAddModal()">+ إضافة قائد جديد</button>
+      <button class="btn-action" onclick="exportData()">📤 تصدير</button>
+      <button class="btn-action" onclick="document.getElementById('import-file').click()">📥 استيراد</button>
+      <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
     </div>
-
-    <div class="input-zone">
-      <h3>🚧 تنتظر التعبئة منك</h3>
-      <p style="color: var(--ink-soft); margin: 12px auto 20px; max-width: 600px;">
-        ذكرتَ أن أسماء القادة وتوزيعاتهم مختلفة عن مارمرقس. في الإصدار القادم، نضيف نموذج إدخال يدوي للقائد العام (Admin) ليُدخل:
-      </p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; max-width: 700px; margin: 0 auto;">
-        <div class="card" style="text-align: right;">
-          <strong style="color: var(--indigo);">القادة الأفراد</strong>
-          <p style="font-size: 12px; color: var(--ink-soft); margin-top: 6px;">الاسم · الدور · القطاع · الفريق · السنة</p>
-        </div>
-        <div class="card" style="text-align: right;">
-          <strong style="color: var(--indigo);">توزيع القطاعات</strong>
-          <p style="font-size: 12px; color: var(--ink-soft); margin-top: 6px;">مين قائد كل فريق · مين مساعد · من في كل لجنة</p>
-        </div>
-        <div class="card" style="text-align: right;">
-          <strong style="color: var(--indigo);">اللجان</strong>
-          <p style="font-size: 12px; color: var(--ink-soft); margin-top: 6px;">ميديا · افتقاد · طبية · سكرتارية · مالية · لوجيستيك</p>
-        </div>
-      </div>
-      <button class="btn btn-primary" style="margin-top: 24px;" onclick="alert('قريبًا — هنبني نموذج إدخال كامل في الخطوة القادمة 🚧')">
-        إضافة قائد جديد
-      </button>
-    </div>
-  </section>
+  </div>
 </div>
+
+<!-- Filters -->
+<div class="filters-bar">
+  <div class="filters-inner">
+    <span class="filters-label">فلتر:</span>
+    <button class="filter-chip active" data-filter="all" onclick="setFilter('all')">الكل</button>
+    <button class="filter-chip" data-filter="leadership" onclick="setFilter('leadership')">🟣 القيادة العليا</button>
+    <button class="filter-chip" data-filter="advanced" onclick="setFilter('advanced')">🟢 المتقدم</button>
+    <button class="filter-chip" data-filter="junior" onclick="setFilter('junior')">🔴 المبتدئ</button>
+    <button class="filter-chip" data-filter="cubs" onclick="setFilter('cubs')">🟠 الأشبال</button>
+    <button class="filter-chip" data-filter="committee-logistics" onclick="setFilter('committee-logistics')">📦 لوجيستيات</button>
+    <button class="filter-chip" data-filter="committee-admin" onclick="setFilter('committee-admin')">📚 إدارة/تعليم</button>
+    <button class="filter-chip" data-filter="jawal" onclick="setFilter('jawal')">⚓ جوّالة</button>
+    <input type="text" class="filter-search" placeholder="🔍 ابحث بالاسم..." id="search-input" oninput="render()">
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+  <div id="leaders-container"></div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2 id="modal-title">إضافة قائد جديد</h2>
+    <p class="modal-sub">املأ البيانات الأساسية للقائد · الاسم والدور إجباريين</p>
+
+    <input type="hidden" id="leader-id">
+
+    <div class="form-group">
+      <label>الاسم الكامل *</label>
+      <input type="text" id="leader-name" placeholder="مثال: مينا جورج">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>الدور *</label>
+        <select id="leader-role" onchange="onRoleChange()">
+          <option value="">— اختر الدور —</option>
+          <optgroup label="القيادة العليا">
+            <option value="priest">أب كاهن</option>
+            <option value="leader-general">قائد عام</option>
+            <option value="deputy">نائب القائد العام</option>
+          </optgroup>
+          <optgroup label="قطاعات">
+            <option value="sector-male">قائد قطاع (ولد)</option>
+            <option value="sector-female">قائدة قطاع (بنت)</option>
+            <option value="assistant">مساعد قائد قطاع</option>
+            <option value="admin">منسق إداري</option>
+            <option value="leader">قائد عادي</option>
+          </optgroup>
+          <optgroup label="لجان عرضية">
+            <option value="committee">عضو لجنة</option>
+          </optgroup>
+          <optgroup label="جوّالة">
+            <option value="jawal">جوّال تحت التدريب</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>التوزيع</label>
+        <select id="leader-assignment">
+          <option value="">— اختر التوزيع —</option>
+          <optgroup label="قطاعات">
+            <option value="advanced">قطاع المتقدم</option>
+            <option value="junior">قطاع المبتدئ</option>
+            <option value="cubs">قطاع الأشبال</option>
+          </optgroup>
+          <optgroup label="لجان">
+            <option value="committee-logistics">لجنة اللوجيستيات</option>
+            <option value="committee-admin">لجنة الإدارة والتعليم</option>
+          </optgroup>
+          <option value="leadership">القيادة العليا</option>
+          <option value="multi">يخدم في أكتر من قطاع</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>المسمى الوظيفي / الوصف</label>
+      <input type="text" id="leader-position" placeholder="مثال: قائد عام · مساعد قائد قطاع المتقدم">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>التليفون (اختياري)</label>
+        <input type="text" id="leader-phone" placeholder="01XXXXXXXXX">
+      </div>
+      <div class="form-group">
+        <label>الكنيسة (اختياري)</label>
+        <select id="leader-church">
+          <option value="">— غير محدد —</option>
+          <option value="anba-samuel">الأنبا صموئيل</option>
+          <option value="pope-kyrillos">البابا كيرلس</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>ملاحظات (اختياري)</label>
+      <textarea id="leader-notes" rows="2" placeholder="أي ملاحظات إضافية..."></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-modal cancel" onclick="closeModal()">إلغاء</button>
+      <button class="btn-modal save" onclick="saveLeader()">حفظ</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
 <div id="footer-mount"></div>
+
 <script src="assets/zs.js"></script>
 <script>
   ZS.requireAuth();
   ZS.mountChrome('leaders');
+
+  // ============================================================
+  // DATA MANAGEMENT
+  // ============================================================
+  const STORAGE_KEY = 'zs_leaders_v1';
+  let leaders = loadLeaders();
+  let currentFilter = 'all';
+
+  function loadLeaders() {
+    try {
+      const data = localStorage.getItem(STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    } catch (e) { return []; }
+  }
+
+  function saveLeaders() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(leaders));
+    } catch (e) {
+      showToast('⚠️ فشل الحفظ');
+    }
+  }
+
+  function generateId() {
+    return 'L_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+  }
+
+  // ============================================================
+  // ROLE LABELS
+  // ============================================================
+  const ROLE_LABELS = {
+    'priest': 'أب كاهن',
+    'leader-general': 'قائد عام',
+    'deputy': 'نائب القائد العام',
+    'sector-male': 'قائد قطاع',
+    'sector-female': 'قائدة قطاع',
+    'assistant': 'مساعد',
+    'admin': 'منسق إداري',
+    'leader': 'قائد',
+    'committee': 'لجنة',
+    'jawal': 'جوّال'
+  };
+
+  const ASSIGNMENT_LABELS = {
+    'advanced': 'قطاع المتقدم',
+    'junior': 'قطاع المبتدئ',
+    'cubs': 'قطاع الأشبال',
+    'committee-logistics': 'لجنة اللوجيستيات',
+    'committee-admin': 'لجنة الإدارة والتعليم',
+    'leadership': 'القيادة العليا',
+    'multi': 'متعدد القطاعات'
+  };
+
+  const CHURCH_LABELS = {
+    'anba-samuel': 'الأنبا صموئيل',
+    'pope-kyrillos': 'البابا كيرلس'
+  };
+
+  // ============================================================
+  // GROUPING & RENDERING
+  // ============================================================
+  function getFilteredLeaders() {
+    const search = (document.getElementById('search-input').value || '').trim().toLowerCase();
+
+    return leaders.filter(l => {
+      // Search
+      if (search) {
+        const haystack = (l.name + ' ' + (l.position || '') + ' ' + (l.notes || '')).toLowerCase();
+        if (!haystack.includes(search)) return false;
+      }
+      // Filter
+      if (currentFilter === 'all') return true;
+      if (currentFilter === 'leadership') {
+        return ['priest', 'leader-general', 'deputy'].includes(l.role);
+      }
+      if (currentFilter === 'jawal') return l.role === 'jawal';
+      if (currentFilter === 'committee-logistics') return l.assignment === 'committee-logistics';
+      if (currentFilter === 'committee-admin') return l.assignment === 'committee-admin';
+      // sector filters
+      return l.assignment === currentFilter;
+    });
+  }
+
+  function groupLeaders(list) {
+    // Group order: leadership → sectors → committees → jawal
+    const groups = {
+      'leadership': { title: '🟣 القيادة العليا', items: [] },
+      'advanced': { title: '🟢 قطاع المتقدم ومتقدمات', items: [] },
+      'junior': { title: '🔴 قطاع المبتدئ ومرشدات', items: [] },
+      'cubs': { title: '🟠 قطاع الأشبال وزهرات', items: [] },
+      'committee-logistics': { title: '📦 لجنة اللوجيستيات', items: [] },
+      'committee-admin': { title: '📚 لجنة الإدارة والتعليم', items: [] },
+      'multi': { title: '🔗 متعدد القطاعات', items: [] },
+      'jawal': { title: '⚓ الجوّالة', items: [] },
+      'unassigned': { title: '❓ غير موزّعين', items: [] }
+    };
+
+    list.forEach(l => {
+      // jawal go to jawal group regardless of assignment (unless explicitly distributed)
+      if (l.role === 'jawal') {
+        groups.jawal.items.push(l);
+        return;
+      }
+      // Top leadership
+      if (['priest', 'leader-general', 'deputy'].includes(l.role)) {
+        groups.leadership.items.push(l);
+        return;
+      }
+      // By assignment
+      if (l.assignment && groups[l.assignment]) {
+        groups[l.assignment].items.push(l);
+      } else {
+        groups.unassigned.items.push(l);
+      }
+    });
+
+    return groups;
+  }
+
+  function escapeHtml(s) {
+    if (!s) return '';
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  }
+
+  function renderLeaderCard(l) {
+    const roleLabel = ROLE_LABELS[l.role] || l.role;
+    const assignmentLabel = l.assignment ? (ASSIGNMENT_LABELS[l.assignment] || l.assignment) : '';
+    const churchLabel = l.church ? (CHURCH_LABELS[l.church] || l.church) : '';
+
+    return `
+      <div class="leader-card role-${l.role}">
+        <div class="card-top-row">
+          <span class="role-badge role-${l.role}">${roleLabel}</span>
+          <div class="card-actions">
+            <button class="icon-btn" onclick="openEditModal('${l.id}')" title="تعديل">✎</button>
+            <button class="icon-btn danger" onclick="deleteLeader('${l.id}')" title="حذف">🗑</button>
+          </div>
+        </div>
+        <h3 class="leader-name">${escapeHtml(l.name)}</h3>
+        ${l.position ? `<div class="leader-position">${escapeHtml(l.position)}</div>` : ''}
+        <div class="leader-meta">
+          ${assignmentLabel ? `<span class="meta-tag">${assignmentLabel}</span>` : ''}
+          ${churchLabel ? `<span class="meta-tag">⛪ ${churchLabel}</span>` : ''}
+          ${l.phone ? `<span class="meta-tag">📞 ${escapeHtml(l.phone)}</span>` : ''}
+        </div>
+        ${l.notes ? `<div class="leader-notes">${escapeHtml(l.notes)}</div>` : ''}
+      </div>
+    `;
+  }
+
+  function render() {
+    const container = document.getElementById('leaders-container');
+    const filtered = getFilteredLeaders();
+
+    // Update stats
+    document.getElementById('stat-total').textContent = toArabicNum(leaders.length);
+    document.getElementById('stat-leaders').textContent = toArabicNum(leaders.filter(l => l.role !== 'jawal').length);
+    document.getElementById('stat-jawal').textContent = toArabicNum(leaders.filter(l => l.role === 'jawal').length);
+
+    if (leaders.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="icon">👥</div>
+          <h3>مفيش قادة لسة</h3>
+          <p>ابدأ بإضافة القائد العام، نائبه، ثم باقي القادة والجوّالة</p>
+          <button class="btn-action primary" onclick="openAddModal()">+ إضافة أول قائد</button>
+        </div>
+      `;
+      return;
+    }
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="icon">🔍</div>
+          <h3>مفيش نتائج</h3>
+          <p>جرّب تغيّر الفلتر أو امسح البحث</p>
+        </div>
+      `;
+      return;
+    }
+
+    const groups = groupLeaders(filtered);
+    let html = '';
+    Object.keys(groups).forEach(key => {
+      const g = groups[key];
+      if (g.items.length === 0) return;
+      html += `
+        <section class="group-section">
+          <div class="group-header">
+            <h2>${g.title}</h2>
+            <span class="group-count">${toArabicNum(g.items.length)}</span>
+          </div>
+          <div class="leaders-grid">
+            ${g.items.map(renderLeaderCard).join('')}
+          </div>
+        </section>
+      `;
+    });
+    container.innerHTML = html;
+  }
+
+  function toArabicNum(n) {
+    const ar = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    return String(n).split('').map(d => ar[parseInt(d)] || d).join('');
+  }
+
+  // ============================================================
+  // FILTERS
+  // ============================================================
+  function setFilter(filter) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-chip').forEach(c => {
+      c.classList.toggle('active', c.dataset.filter === filter);
+    });
+    render();
+  }
+
+  // ============================================================
+  // MODAL
+  // ============================================================
+  let editingId = null;
+
+  function openAddModal() {
+    editingId = null;
+    document.getElementById('modal-title').textContent = 'إضافة قائد جديد';
+    document.getElementById('leader-id').value = '';
+    document.getElementById('leader-name').value = '';
+    document.getElementById('leader-role').value = '';
+    document.getElementById('leader-assignment').value = '';
+    document.getElementById('leader-position').value = '';
+    document.getElementById('leader-phone').value = '';
+    document.getElementById('leader-church').value = '';
+    document.getElementById('leader-notes').value = '';
+    document.getElementById('modal').classList.add('show');
+    setTimeout(() => document.getElementById('leader-name').focus(), 100);
+  }
+
+  function openEditModal(id) {
+    const l = leaders.find(x => x.id === id);
+    if (!l) return;
+    editingId = id;
+    document.getElementById('modal-title').textContent = 'تعديل بيانات القائد';
+    document.getElementById('leader-id').value = l.id;
+    document.getElementById('leader-name').value = l.name || '';
+    document.getElementById('leader-role').value = l.role || '';
+    document.getElementById('leader-assignment').value = l.assignment || '';
+    document.getElementById('leader-position').value = l.position || '';
+    document.getElementById('leader-phone').value = l.phone || '';
+    document.getElementById('leader-church').value = l.church || '';
+    document.getElementById('leader-notes').value = l.notes || '';
+    document.getElementById('modal').classList.add('show');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('show');
+    editingId = null;
+  }
+
+  function onRoleChange() {
+    const role = document.getElementById('leader-role').value;
+    const assignmentSelect = document.getElementById('leader-assignment');
+    // Auto-set leadership for top roles
+    if (['priest', 'leader-general', 'deputy'].includes(role)) {
+      assignmentSelect.value = 'leadership';
+    }
+  }
+
+  function saveLeader() {
+    const name = document.getElementById('leader-name').value.trim();
+    const role = document.getElementById('leader-role').value;
+    if (!name || !role) {
+      showToast('⚠️ الاسم والدور إجباريين');
+      return;
+    }
+
+    const data = {
+      name,
+      role,
+      assignment: document.getElementById('leader-assignment').value || null,
+      position: document.getElementById('leader-position').value.trim() || null,
+      phone: document.getElementById('leader-phone').value.trim() || null,
+      church: document.getElementById('leader-church').value || null,
+      notes: document.getElementById('leader-notes').value.trim() || null
+    };
+
+    if (editingId) {
+      const idx = leaders.findIndex(l => l.id === editingId);
+      if (idx >= 0) {
+        leaders[idx] = { ...leaders[idx], ...data };
+        showToast('✓ اتعدّل');
+      }
+    } else {
+      data.id = generateId();
+      data.createdAt = new Date().toISOString();
+      leaders.push(data);
+      showToast('✓ تمت الإضافة');
+    }
+
+    saveLeaders();
+    closeModal();
+    render();
+  }
+
+  function deleteLeader(id) {
+    const l = leaders.find(x => x.id === id);
+    if (!l) return;
+    if (!confirm(`متأكد من حذف "${l.name}"؟ ده مش هيرجع.`)) return;
+    leaders = leaders.filter(x => x.id !== id);
+    saveLeaders();
+    render();
+    showToast('🗑 اتحذف');
+  }
+
+  // ============================================================
+  // EXPORT / IMPORT
+  // ============================================================
+  function exportData() {
+    if (leaders.length === 0) {
+      showToast('⚠️ مفيش بيانات للتصدير');
+      return;
+    }
+    const dataStr = JSON.stringify({
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      leaders
+    }, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const date = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `zayed-scout-leaders-${date}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('📤 تم التصدير');
+  }
+
+  function importData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const data = JSON.parse(e.target.result);
+        if (!data.leaders || !Array.isArray(data.leaders)) {
+          showToast('⚠️ الملف مش صحيح');
+          return;
+        }
+        if (leaders.length > 0) {
+          if (!confirm(`عندك ${leaders.length} قائد محفوظين. الاستيراد هيستبدلهم. متأكد؟`)) return;
+        }
+        leaders = data.leaders;
+        saveLeaders();
+        render();
+        showToast(`✓ تم استيراد ${data.leaders.length} قائد`);
+      } catch (err) {
+        showToast('⚠️ خطأ في قراءة الملف');
+      }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+  }
+
+  // ============================================================
+  // TOAST
+  // ============================================================
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  // Click outside modal to close
+  document.getElementById('modal').addEventListener('click', (e) => {
+    if (e.target.id === 'modal') closeModal();
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Initial render
+  render();
 </script>
+
 </body>
 </html>
