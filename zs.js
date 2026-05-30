@@ -31,35 +31,67 @@ const ZS = {
     }
   ],
 
+  // ===== localStorage safe wrappers =====
+  _storageGet(key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  },
+  _storageSet(key, value) {
+    try { localStorage.setItem(key, value); return true; } catch (e) { return false; }
+  },
+  _storageRemove(key) {
+    try { localStorage.removeItem(key); } catch (e) {}
+  },
+
+  // In-memory session fallback (when localStorage is blocked)
+  _memSession: null,
+
   // ===== Init: seed default users on first load =====
   init() {
-    if (!localStorage.getItem(this.KEY_USERS)) {
-      localStorage.setItem(this.KEY_USERS, JSON.stringify(this.DEFAULT_USERS));
+    if (!this._storageGet(this.KEY_USERS)) {
+      this._storageSet(this.KEY_USERS, JSON.stringify(this.DEFAULT_USERS));
     }
   },
 
   // ===== Auth: login =====
   login(email, password) {
-    const users = JSON.parse(localStorage.getItem(this.KEY_USERS) || '[]');
+    // Try localStorage users first, fall back to DEFAULT_USERS
+    let users = this.DEFAULT_USERS;
+    const stored = this._storageGet(this.KEY_USERS);
+    if (stored) {
+      try { users = JSON.parse(stored); } catch (e) { users = this.DEFAULT_USERS; }
+    }
+
     const user = users.find(u =>
       u.email.toLowerCase() === email.toLowerCase().trim() &&
       u.password === password
     );
+
     if (!user) return { ok: false, error: 'الإيميل أو الباسورد غير صحيح' };
+
     const { password: _, ...safe } = user;
-    localStorage.setItem(this.KEY_CURRENT, JSON.stringify(safe));
+
+    // Try to save to localStorage; if blocked, use in-memory fallback
+    const saved = this._storageSet(this.KEY_CURRENT, JSON.stringify(safe));
+    if (!saved) {
+      this._memSession = safe;
+    }
+
     return { ok: true, user: safe };
   },
 
   // ===== Auth: current user =====
   currentUser() {
-    const raw = localStorage.getItem(this.KEY_CURRENT);
+    // Check in-memory session first
+    if (this._memSession) return this._memSession;
+
+    const raw = this._storageGet(this.KEY_CURRENT);
     return raw ? JSON.parse(raw) : null;
   },
 
   // ===== Auth: logout =====
   logout() {
-    localStorage.removeItem(this.KEY_CURRENT);
+    this._memSession = null;
+    this._storageRemove(this.KEY_CURRENT);
     window.location.href = 'index.html';
   },
 
